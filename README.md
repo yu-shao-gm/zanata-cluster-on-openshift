@@ -1,0 +1,1 @@
+# zanata-cluster-on-openshift
