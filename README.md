@@ -32,5 +32,5 @@ Creating OpenShift Deployment
 - # oc deploy dc/zanata-localization --latest
 
 Accessing Openshift Web UI
-- https://server_IP_address>:8443/
+- https://server_IP_address:8443/
 
