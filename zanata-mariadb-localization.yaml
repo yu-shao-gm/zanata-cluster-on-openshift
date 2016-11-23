@@ -14,7 +14,7 @@ objects:
     creationTimestamp: null
     generation: 1
     labels:
-      app: zanata/server
+      app: zanata-server
     name: zanata-server
   spec:
     tags:
@@ -67,66 +67,6 @@ objects:
         storage: 500M
     volumeName: zanata-db-pv
 - apiVersion: v1
-  kind: PersistentVolumeClaim
-  metadata:
-    annotations:
-      pv.kubernetes.io/bind-completed: "yes"
-      pv.kubernetes.io/bound-by-controller: "yes"
-    creationTimestamp: null
-    name: zanata-log-pvc
-  spec:
-    accessModes:
-    - ReadWriteOnce
-    resources:
-      requests:
-        storage: 500M
-    volumeName: zanata-log-pv
-- apiVersion: v1
-  kind: PersistentVolumeClaim
-  metadata:
-    annotations:
-      pv.kubernetes.io/bind-completed: "yes"
-      pv.kubernetes.io/bound-by-controller: "yes"
-    creationTimestamp: null
-    name: zanata-tmp-pvc
-  spec:
-    accessModes:
-    - ReadWriteOnce
-    resources:
-      requests:
-        storage: 500M
-    volumeName: zanata-tmp-pv
-- apiVersion: v1
-  kind: PersistentVolumeClaim
-  metadata:
-    annotations:
-      pv.kubernetes.io/bind-completed: "yes"
-      pv.kubernetes.io/bound-by-controller: "yes"
-    creationTimestamp: null
-    name: zanata-deploy-pvc
-  spec:
-    accessModes:
-    - ReadWriteOnce
-    resources:
-      requests:
-        storage: 500M
-    volumeName: zanata-deploy-pv
-- apiVersion: v1
-  kind: PersistentVolumeClaim
-  metadata:
-    annotations:
-      pv.kubernetes.io/bind-completed: "yes"
-      pv.kubernetes.io/bound-by-controller: "yes"
-    creationTimestamp: null
-    name: zanata-config-pvc
-  spec:
-    accessModes:
-    - ReadWriteOnce
-    resources:
-      requests:
-        storage: 500M
-    volumeName: zanata-config-pv
-- apiVersion: v1
   kind: DeploymentConfig
   metadata:
     annotations:
@@ -172,20 +112,14 @@ objects:
           - name: DB_ENV_MYSQL_USER
             value: "zanata"
           - name: DB_ENV_MYSQL_PASSWORD
-            value: "password"
+            value: "zanatapassword"
           - name: ZANATA_MYSQL_DATABASE
             value: "zanata"
           - name: ZANATA_MYSQL_USER
             value: "zanata"
           volumeMounts:
-          - mountPath: "/opt/jboss/wildfly/standalone/data"
+          - mountPath: "/opt/jboss/wildfly/standalone"
             name: zanata-volume
-          - mountPath: "/opt/jboss/wildfly/standalone/log"
-            name: zanata-log-volume
-          - mountPath: "/opt/jboss/wildfly/standalone/tmp"
-            name: zanata-tmp-volume
-          - mountPath: "/opt/jboss/wildfly/standalone/deployments"
-            name: zanata-deploy-volume
           ports:
           - containerPort: 6697
             protocol: TCP
@@ -197,6 +131,12 @@ objects:
           env:
           - name: MYSQL_ROOT_PASSWORD
             value: "password"
+          - name: MYSQL_DATABASE
+            value: "zanata"
+          - name: MYSQL_USER
+            value: "zanata"
+          - name: MYSQL_PASSWORD
+            value: "zanatapassword"
           - name: MYSQL_ALLOW_EMPTY_PASSWORD
             value: "yes"
           volumeMounts:
@@ -211,21 +151,9 @@ objects:
         - name: zanata-volume
           persistentVolumeClaim:
             claimName: zanata-pvc
-        - name: zanata-log-volume
-          persistentVolumeClaim:
-            claimName: zanata-log-pvc
-        - name: zanata-tmp-volume
-          persistentVolumeClaim:
-            claimName: zanata-tmp-pvc
         - name: zanata-db-volume
           persistentVolumeClaim:
             claimName: zanata-db-pvc
-        - name: zanata-deploy-volume
-          persistentVolumeClaim:
-            claimName: zanata-deploy-pvc
-        - name: zanata-config-volume
-          persistentVolumeClaim:
-            claimName: zanata-config-pvc
         dnsPolicy: ClusterFirst
         restartPolicy: Always
         securityContext: {}
