@@ -41,6 +41,7 @@ Preparing the storage on your local host machine
 Downloading the template and other patch files
 - # wget https://raw.githubusercontent.com/yu-shao-gm/zanata-cluster-on-openshift/master/zanata-mariadb-localization.yaml
 - # wget https://raw.githubusercontent.com/yu-shao-gm/zanata-cluster-on-openshift/master/standalone.xml.patch
+- # wget https://raw.githubusercontent.com/zanata/zanata-docker-files/master/zanata-server/conf/admin-user-setup.sql
 
 Preparing the local Zanata data directory
 
@@ -55,6 +56,8 @@ Preparing the local Zanata data directory
 # Now, you are in your docker container, user is jboss
 - $ cp -R /opt/jboss/wildfly/* /opt/jboss/data-tmp/
 - $ exit
+
+# cp admin-user-setup.sql /var/zanata-db-storage
 
 Patching standalone.xml.patch in /var/zanata/storage/standalone/configuration directory
 
