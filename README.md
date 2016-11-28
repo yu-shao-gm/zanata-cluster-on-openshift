@@ -57,7 +57,7 @@ Preparing the local Zanata data directory
 - $ cp -R /opt/jboss/wildfly/* /opt/jboss/data-tmp/
 - $ exit
 
-# cp admin-user-setup.sql /var/zanata-db-storage
+  # cp admin-user-setup.sql /var/zanata-db-storage
 
 Patching standalone.xml.patch in /var/zanata/storage/standalone/configuration directory
 
