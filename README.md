@@ -71,3 +71,6 @@ Creating OpenShift Deployment
 Accessing Openshift Web UI
 - https://server_IP_address:8443/ as developer, developer
 - Find the zanata-localization deployment, find the ip address, Zanata is running at Https://zanata-localization-ipaddr:8080/zanata
+
+Creating the initial zanata admin user, otherwise you will not be able to login
+https://github.com/zanata/zanata-docker-files/blob/master/zanata-server/conf/admin-user-setup.sql
