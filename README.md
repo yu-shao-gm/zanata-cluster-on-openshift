@@ -59,10 +59,10 @@ Logging in as developer user
 
 Creating OpenShift Deployment 
 
-- # oc login -u developer -p developer --server=<server_IP.:8443>
+- # oc login -u developer -p developer --server=server_IP_addr:8443
 - # oc process -f zanata-mariadb-localization.yaml | oc create -f -
 - # oc deploy dc/zanata-localization --latest
 
 Accessing Openshift Web UI
 - https://server_IP_address:8443/ as developer, developer
-- Find the zanata-localization deployment, find the ip address, Zanata is running at Https://<zanata-localization-ipaddress>:8080/zanata
+- Find the zanata-localization deployment, find the ip address, Zanata is running at Https://zanata-localization-ipaddr:8080/zanata
