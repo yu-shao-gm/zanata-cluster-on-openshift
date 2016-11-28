@@ -51,16 +51,19 @@ Preparing the local Zanata data directory
 - # docker pull zanata/server
 - # docker run -it -v /var/zanata-storage:/opt/jboss/data-tmp zanata/server /bin/bash
 
+Patching standalone.xml.patch in /var/zanata/storage/standalone/configuration directory
+
 Logging in as developer user
 - # oc login -u developer -p developer
 
 
 Creating OpenShift Deployment 
 
-- # oc login -u developer -p developer --server=<server_IP.:8443
+- # oc login -u developer -p developer --server=<server_IP.:8443>
 - # oc process -f zanata-mariadb-localization.yaml | oc create -f -
 - # oc deploy dc/zanata-localization --latest
 
 Accessing Openshift Web UI
 - https://server_IP_address:8443/ as developer, developer
 
+Find the zanata-localization deployment, find the ip address, Zanata is running at Https://<zanata-localization-ipaddress>:8080/zanata
