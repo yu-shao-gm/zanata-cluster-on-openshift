@@ -207,6 +207,8 @@ objects:
             value: "zanata"
           - name: ZANATA_MYSQL_USER
             value: "zanata"
+          - name: ZANATA_HOME_DIR
+            value: "/opt/jboss/wildfly"
           volumeMounts:
           - mountPath: "/opt/jboss/wildfly/"
             name: zanata-volume
