@@ -45,11 +45,9 @@ Preparing the local Zanata data directory
 - # mkdir /var/zanata-storage
 - # chmod 777 /var/zanata-storage
 - # chcon -R -t svirt_sandbox_file_t /var/zanata-storage
-
 - # mkdir /var/zanata-db-storage
 - # chmod 777 /var/zanata-db-storage
 - # chcon -R -t svirt_sandbox_file_t /var/zanata-db-storage
-
 - # docker pull zanata/server
 - # docker run -it -v /var/zanata-storage:/opt/jboss/data-tmp zanata/server /bin/bash
 
@@ -64,5 +62,5 @@ Creating OpenShift Deployment
 - # oc deploy dc/zanata-localization --latest
 
 Accessing Openshift Web UI
-- https://server_IP_address:8443/
+- https://server_IP_address:8443/ as developer, developer
 
