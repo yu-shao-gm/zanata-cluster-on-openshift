@@ -1,0 +1,33 @@
+--- standalone.xml.orig	2016-11-28 12:54:26.502686425 -0500
++++ standalone.xml	2016-11-28 13:06:20.099713111 -0500
+@@ -34,9 +34,9 @@
+     </extensions>
+ 
+     <system-properties>
+-        <property name="javamelody.storage-directory" value="${user.home}/zanata/stats"/>
+-        <property name="hibernate.search.default.indexBase" value="${user.home}/zanata/indexes"/>
+-        <property name="ehcache.disk.store.dir" value="${user.home}/zanata/ehcache"/>
++        <property name="javamelody.storage-directory" value="${env.ZANATA_HOME_DIR}/zanata/stats"/>
++        <property name="hibernate.search.default.indexBase" value="${env.ZANATA_HOME_DIR}/zanata/indexes"/>
++        <property name="ehcache.disk.store.dir" value="${env.ZANATA_HOME_DIR}/zanata/ehcache"/>
+         <property name="jboss.as.management.blocking.timeout" value="1000"/>
+     </system-properties>
+ 
+@@ -193,7 +193,7 @@
+         <subsystem xmlns="urn:jboss:domain:datasources:4.0">
+             <datasources>
+                 <datasource jndi-name="java:jboss/datasources/zanataDatasource" pool-name="zanataDatasource" enabled="true" use-ccm="true">
+-                    <connection-url>jdbc:mysql://${env.DB_PORT_3306_TCP_ADDR}:3306/${env.DB_ENV_MYSQL_DATABASE}?characterEncoding=UTF-8</connection-url>
++                    <connection-url>jdbc:mysql://${env.ZANATA_MARIADB_SERVICE_HOST}:3306/${env.DB_ENV_MYSQL_DATABASE}?characterEncoding=UTF-8</connection-url>
+                     <driver-class>com.mysql.jdbc.Driver</driver-class>
+                     <driver>mysql-connector-java.jar</driver>
+                     <pool>
+@@ -454,7 +454,7 @@
+                 <simple name="java:global/zanata/email/default-from-address"
+                   value="no-reply@zanata.org" />
+                 <simple name="java:global/zanata/files/document-storage-directory"
+-                  value="${user.home}/zanata/files" />
++                  value="${env.ZANATA_HOME_DIR}/zanata/files" />
+                 <lookup name="java:jboss/exported/zanata/files/document-storage-directory"
+                   lookup="java:global/zanata/files/document-storage-directory"/>
+             </bindings>
