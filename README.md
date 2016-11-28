@@ -52,6 +52,9 @@ Preparing the local Zanata data directory
 - # chcon -R -t svirt_sandbox_file_t /var/zanata-db-storage
 - # docker pull zanata/server
 - # docker run -it -v /var/zanata-storage:/opt/jboss/data-tmp zanata/server /bin/bash
+# Now, you are in your docker container, user is jboss
+- $ cp -R /opt/jboss/wildfly/* /opt/jboss/data-tmp/
+- $ exit
 
 Patching standalone.xml.patch in /var/zanata/storage/standalone/configuration directory
 
