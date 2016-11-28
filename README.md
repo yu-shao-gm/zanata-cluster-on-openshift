@@ -1,5 +1,7 @@
 # zanata-cluster-on-openshift
 
+By: Yu Shao <yshao@redhat.com>
+
 Based on Fedora 24
 
 Install docker, as root user:
