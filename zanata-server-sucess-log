@@ -1,0 +1,296 @@
+=========================================================================
+  JBoss Bootstrap Environment
+  JBOSS_HOME: /opt/jboss/wildfly
+  JAVA: /usr/lib/jvm/java/bin/java
+  JAVA_OPTS:  -server -Xms64m -Xmx512m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=org.jboss.byteman -Djava.awt.headless=true
+=========================================================================
+16:29:31,709 INFO  [org.jboss.msc] (main) JBoss MSC version 1.2.6.Final
+16:29:32,577 INFO  [org.jboss.as] (MSC service thread 1-6) WFLYSRV0049: WildFly Full 10.1.0.Final (WildFly Core 2.2.0.Final) starting
+16:29:35,082 INFO  [org.jboss.as.server.deployment.scanner] (DeploymentScanner-threads - 1) WFLYDS0015: Re-attempting failed deployment zanata.war
+16:29:35,730 INFO  [org.jboss.as.repository] (ServerService Thread Pool -- 19) WFLYDR0001: Content added at location /opt/jboss/wildfly/standalone/data/content/67/a360616eaf442b089a39921ff22149d2f0fdb5/content
+16:29:36,958 INFO  [org.jboss.as.server] (Controller Boot Thread) WFLYSRV0039: Creating http management service using socket-binding (management-http)
+16:29:36,971 INFO  [org.xnio] (MSC service thread 1-2) XNIO version 3.4.0.Final
+16:29:36,976 INFO  [org.xnio.nio] (MSC service thread 1-2) XNIO NIO Implementation Version 3.4.0.Final
+16:29:37,673 INFO  [org.jboss.as.clustering.infinispan] (ServerService Thread Pool -- 40) WFLYCLINF0001: Activating Infinispan subsystem.
+16:29:37,680 INFO  [org.jboss.as.naming] (ServerService Thread Pool -- 50) WFLYNAM0001: Activating Naming Subsystem
+16:29:37,680 INFO  [org.wildfly.extension.io] (ServerService Thread Pool -- 39) WFLYIO001: Worker 'default' has auto-configured to 16 core threads with 128 task threads based on your 8 available processors
+16:29:37,690 INFO  [org.jboss.remoting] (MSC service thread 1-4) JBoss Remoting version 4.0.21.Final
+16:29:37,706 INFO  [org.jboss.as.security] (ServerService Thread Pool -- 57) WFLYSEC0002: Activating Security Subsystem
+16:29:37,717 WARN  [org.jboss.as.txn] (ServerService Thread Pool -- 58) WFLYTX0013: Node identifier property is set to the default value. Please make sure it is unique.
+16:29:37,729 INFO  [org.jboss.as.webservices] (ServerService Thread Pool -- 60) WFLYWS0002: Activating WebServices Extension
+16:29:37,724 INFO  [org.jboss.as.security] (MSC service thread 1-8) WFLYSEC0001: Current PicketBox version=4.9.6.Final
+16:29:37,750 INFO  [org.jboss.as.jsf] (ServerService Thread Pool -- 46) WFLYJSF0007: Activated the following JSF Implementations: [main]
+16:29:37,756 INFO  [org.jboss.as.naming] (MSC service thread 1-3) WFLYNAM0003: Starting Naming Service
+16:29:37,772 INFO  [org.jboss.as.mail.extension] (MSC service thread 1-6) WFLYMAIL0001: Bound mail session [java:jboss/mail/Default]
+16:29:37,793 INFO  [org.jboss.as.connector] (MSC service thread 1-1) WFLYJCA0009: Starting JCA Subsystem (WildFly/IronJacamar 1.3.4.Final)
+16:29:37,802 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-7) WFLYUT0003: Undertow 1.4.0.Final starting
+16:29:37,872 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 59) WFLYUT0014: Creating file handler for path '/opt/jboss/wildfly/welcome-content' with options [directory-listing: 'false', follow-symlink: 'false', case-sensitive: 'true', safe-symlink-paths: '[]']
+16:29:37,876 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-7) WFLYUT0012: Started server default-server.
+16:29:37,877 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-6) WFLYUT0018: Host default-host starting
+16:29:38,077 INFO  [org.jboss.as.connector.subsystems.datasources] (ServerService Thread Pool -- 35) WFLYJCA0004: Deploying JDBC-compliant driver class org.h2.Driver (version 1.3)
+16:29:38,081 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-4) WFLYJCA0018: Started Driver service with driver-name = h2
+16:29:38,179 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-7) WFLYUT0006: Undertow HTTP listener default listening on 0.0.0.0:8080
+16:29:38,267 INFO  [org.jboss.as.ejb3] (MSC service thread 1-5) WFLYEJB0481: Strict pool slsb-strict-max-pool is using a max instance size of 128 (per class), which is derived from thread worker pool sizing.
+16:29:38,268 INFO  [org.jboss.as.ejb3] (MSC service thread 1-2) WFLYEJB0482: Strict pool mdb-strict-max-pool is using a max instance size of 32 (per class), which is derived from the number of CPUs on this host.
+16:29:38,444 INFO  [org.jboss.as.connector.subsystems.datasources] (MSC service thread 1-4) WFLYJCA0001: Bound data source [java:jboss/datasources/ExampleDS]
+16:29:38,539 INFO  [org.wildfly.extension.messaging-activemq] (MSC service thread 1-1) WFLYMSGAMQ0075: AIO wasn't located on this platform, it will fall back to using pure Java NIO. Your platform is Linux, install LibAIO to enable the AIO journal and achieve optimal performance.
+16:29:38,567 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-8) WFLYSRV0027: Starting deployment of "mysql-connector-java.jar" (runtime-name: "mysql-connector-java.jar")
+16:29:38,568 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-1) WFLYSRV0027: Starting deployment of "zanata.war" (runtime-name: "zanata.war")
+16:29:38,590 INFO  [org.jboss.as.server.deployment.scanner] (MSC service thread 1-3) WFLYDS0013: Started FileSystemDeploymentService for directory /opt/jboss/wildfly/standalone/deployments
+16:29:38,624 INFO  [org.apache.activemq.artemis.core.server] (ServerService Thread Pool -- 62) AMQ221000: live Message Broker is starting with configuration Broker Configuration (clustered=false,journalDirectory=/opt/jboss/wildfly/standalone/data/activemq/journal,bindingsDirectory=/opt/jboss/wildfly/standalone/data/activemq/bindings,largeMessagesDirectory=/opt/jboss/wildfly/standalone/data/activemq/largemessages,pagingDirectory=/opt/jboss/wildfly/standalone/data/activemq/paging)
+16:29:38,721 INFO  [org.apache.activemq.artemis.core.server] (ServerService Thread Pool -- 62) AMQ221013: Using NIO Journal
+16:29:38,905 INFO  [org.jboss.ws.common.management] (MSC service thread 1-2) JBWS022052: Starting JBossWS 5.1.5.Final (Apache CXF 3.1.6) 
+16:29:38,940 INFO  [org.infinispan.factories.GlobalComponentRegistry] (MSC service thread 1-1) ISPN000128: Infinispan version: Infinispan 'Chakra' 8.2.4.Final
+16:29:39,047 INFO  [org.infinispan.configuration.cache.EvictionConfigurationBuilder] (ServerService Thread Pool -- 64) ISPN000152: Passivation configured without an eviction policy being selected. Only manually evicted entities will be passivated.
+16:29:39,099 INFO  [org.infinispan.configuration.cache.EvictionConfigurationBuilder] (ServerService Thread Pool -- 64) ISPN000152: Passivation configured without an eviction policy being selected. Only manually evicted entities will be passivated.
+16:29:39,105 INFO  [org.infinispan.configuration.cache.EvictionConfigurationBuilder] (ServerService Thread Pool -- 66) ISPN000152: Passivation configured without an eviction policy being selected. Only manually evicted entities will be passivated.
+16:29:39,106 INFO  [org.infinispan.configuration.cache.EvictionConfigurationBuilder] (ServerService Thread Pool -- 66) ISPN000152: Passivation configured without an eviction policy being selected. Only manually evicted entities will be passivated.
+16:29:39,195 INFO  [org.apache.activemq.artemis.core.server] (ServerService Thread Pool -- 62) AMQ221043: Protocol module found: [artemis-server]. Adding protocol support for: CORE
+16:29:39,200 INFO  [org.apache.activemq.artemis.core.server] (ServerService Thread Pool -- 62) AMQ221043: Protocol module found: [artemis-amqp-protocol]. Adding protocol support for: AMQP
+16:29:39,209 INFO  [org.apache.activemq.artemis.core.server] (ServerService Thread Pool -- 62) AMQ221043: Protocol module found: [artemis-hornetq-protocol]. Adding protocol support for: HORNETQ
+16:29:39,211 INFO  [org.apache.activemq.artemis.core.server] (ServerService Thread Pool -- 62) AMQ221043: Protocol module found: [artemis-stomp-protocol]. Adding protocol support for: STOMP
+16:29:39,311 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-4) WFLYJCA0005: Deploying non-JDBC-compliant driver class com.mysql.jdbc.Driver (version 5.1)
+16:29:39,335 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-3) WFLYJCA0018: Started Driver service with driver-name = mysql-connector-java.jar
+16:29:39,338 INFO  [org.jboss.as.connector.subsystems.datasources] (MSC service thread 1-3) WFLYJCA0001: Bound data source [java:jboss/datasources/zanataDatasource]
+16:29:39,951 INFO  [org.wildfly.extension.messaging-activemq] (MSC service thread 1-7) WFLYMSGAMQ0016: Registered HTTP upgrade for activemq-remoting protocol handled by http-acceptor-throughput acceptor
+16:29:39,951 INFO  [org.wildfly.extension.messaging-activemq] (MSC service thread 1-1) WFLYMSGAMQ0016: Registered HTTP upgrade for activemq-remoting protocol handled by http-acceptor acceptor
+16:29:39,951 INFO  [org.wildfly.extension.messaging-activemq] (MSC service thread 1-2) WFLYMSGAMQ0016: Registered HTTP upgrade for activemq-remoting protocol handled by http-acceptor acceptor
+16:29:39,951 INFO  [org.wildfly.extension.messaging-activemq] (MSC service thread 1-5) WFLYMSGAMQ0016: Registered HTTP upgrade for activemq-remoting protocol handled by http-acceptor-throughput acceptor
+16:29:40,919 INFO  [org.apache.activemq.artemis.core.server] (ServerService Thread Pool -- 62) AMQ221007: Server is now live
+16:29:40,919 INFO  [org.apache.activemq.artemis.core.server] (ServerService Thread Pool -- 62) AMQ221001: Apache ActiveMQ Artemis Message Broker version 1.1.0.wildfly-017 [nodeID=47b75e7a-b64f-11e6-907f-dfac37992759] 
+16:29:40,954 INFO  [org.wildfly.extension.messaging-activemq] (ServerService Thread Pool -- 63) WFLYMSGAMQ0002: Bound messaging object to jndi name java:/ConnectionFactory
+16:29:41,013 INFO  [org.jboss.as.connector.deployment] (MSC service thread 1-2) WFLYJCA0007: Registered connection factory java:/JmsXA
+16:29:41,027 INFO  [org.apache.activemq.artemis.core.server] (ServerService Thread Pool -- 65) AMQ221003: trying to deploy queue jms.queue.MailsQueue
+16:29:41,035 INFO  [org.apache.activemq.artemis.core.server] (ServerService Thread Pool -- 66) AMQ221003: trying to deploy queue jms.queue.DLQ
+16:29:41,036 INFO  [org.apache.activemq.artemis.core.server] (ServerService Thread Pool -- 62) AMQ221003: trying to deploy queue jms.queue.ExpiryQueue
+16:29:41,039 INFO  [org.apache.activemq.artemis.jms.server] (ServerService Thread Pool -- 64) AMQ121005: Invalid "host" value "0.0.0.0" detected for "http-connector" connector. Switching to "zanata-localization-1-cb565". If this new address is incorrect please manually configure the connector to use the proper one.
+16:29:41,039 INFO  [org.wildfly.extension.messaging-activemq] (ServerService Thread Pool -- 64) WFLYMSGAMQ0002: Bound messaging object to jndi name java:jboss/exported/jms/RemoteConnectionFactory
+16:29:41,055 INFO  [org.apache.activemq.artemis.ra] (MSC service thread 1-2) Resource adaptor started
+16:29:41,056 INFO  [org.jboss.as.connector.services.resourceadapters.ResourceAdapterActivatorService$ResourceAdapterActivator] (MSC service thread 1-2) IJ020002: Deployed: file://RaActivatoractivemq-ra
+16:29:41,057 INFO  [org.jboss.as.connector.deployment] (MSC service thread 1-2) WFLYJCA0002: Bound JCA ConnectionFactory [java:/JmsXA]
+16:29:41,057 INFO  [org.wildfly.extension.messaging-activemq] (MSC service thread 1-2) WFLYMSGAMQ0002: Bound messaging object to jndi name java:jboss/DefaultJMSConnectionFactory
+16:29:44,380 WARN  [org.jboss.as.server.deployment] (MSC service thread 1-8) WFLYSRV0059: Class Path entry lib/snakeyaml-1.13.jar in /content/zanata.war/WEB-INF/lib/liquibase-core-3.4.2.jar  does not point to a valid jar for a Class-Path reference.
+16:29:44,461 WARN  [org.wildfly.extension.undertow] (MSC service thread 1-5) WFLYUT0080: Valves are no longer supported, org.zanata.security.negotiation.CustomNegotiationAuthenticator is not activated.
+16:29:44,818 INFO  [org.jboss.as.jpa] (MSC service thread 1-5) WFLYJPA0002: Read persistence.xml for zanataDatasourcePU
+16:29:45,071 WARN  [org.jboss.as.dependency.private] (MSC service thread 1-6) WFLYSRV0018: Deployment "deployment.zanata.war" is using a private module ("org.infinispan:main") which may be changed or removed in future versions without notice.
+16:29:45,072 WARN  [org.jboss.as.dependency.private] (MSC service thread 1-6) WFLYSRV0018: Deployment "deployment.zanata.war" is using a private module ("org.antlr:main") which may be changed or removed in future versions without notice.
+16:29:45,072 WARN  [org.jboss.as.dependency.private] (MSC service thread 1-6) WFLYSRV0018: Deployment "deployment.zanata.war" is using a private module ("org.jboss.security.negotiation:main") which may be changed or removed in future versions without notice.
+16:29:45,072 WARN  [org.jboss.as.dependency.deprecated] (MSC service thread 1-6) WFLYSRV0221: Deployment "deployment.zanata.war" is using a deprecated module ("org.picketbox:main") which may be removed in future versions without notice.
+16:29:45,072 WARN  [org.jboss.as.dependency.private] (MSC service thread 1-6) WFLYSRV0018: Deployment "deployment.zanata.war" is using a private module ("org.infinispan.commons:main") which may be changed or removed in future versions without notice.
+16:29:45,105 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 64) WFLYJPA0003: Starting Persistence Unit Service 'zanata.war#zanataDatasourcePU'
+16:29:45,193 INFO  [org.hibernate.annotations.common.Version] (ServerService Thread Pool -- 64) HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+16:29:45,198 INFO  [org.hibernate.Version] (ServerService Thread Pool -- 64) HHH000412: Hibernate Core {4.2.20.Final}
+16:29:45,200 INFO  [org.hibernate.cfg.Environment] (ServerService Thread Pool -- 64) HHH000206: hibernate.properties not found
+16:29:45,201 INFO  [org.hibernate.cfg.Environment] (ServerService Thread Pool -- 64) HHH000021: Bytecode provider name : javassist
+16:29:45,214 INFO  [org.hibernate.ejb.Ejb3Configuration] (ServerService Thread Pool -- 64) HHH000204: Processing PersistenceUnitInfo [
+	name: zanataDatasourcePU
+	...]
+16:29:45,984 INFO  [org.hibernate.service.jdbc.connections.internal.ConnectionProviderInitiator] (ServerService Thread Pool -- 64) HHH000130: Instantiating explicit connection provider: org.zanata.database.WrappedDatasourceConnectionProvider
+16:29:46,244 INFO  [org.zanata.database.WrapperManager] (ServerService Thread Pool -- 64) Database product: MySQL version: 5.5.5-10.1.19-MariaDB-1~jessie (5.5)
+16:29:46,244 INFO  [org.zanata.database.WrapperManager] (ServerService Thread Pool -- 64) Using MySQL database
+16:29:46,244 INFO  [org.zanata.database.WrapperManager] (ServerService Thread Pool -- 64) JDBC driver: MySQL Connector Java version: mysql-connector-java-5.1.25-SNAPSHOT ( Revision: ${bzr.revision-id} ) (5.1)
+16:29:46,244 INFO  [org.zanata.database.WrapperManager] (ServerService Thread Pool -- 64) No need to wrap JDBC connection: driver: MySQL Connector Java
+16:29:46,262 INFO  [org.hibernate.dialect.Dialect] (ServerService Thread Pool -- 64) HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+16:29:46,695 INFO  [org.hibernate.engine.transaction.internal.TransactionFactoryInitiator] (ServerService Thread Pool -- 64) HHH000268: Transaction strategy: org.hibernate.engine.transaction.internal.jta.CMTTransactionFactory
+16:29:46,698 INFO  [org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory] (ServerService Thread Pool -- 64) HHH000397: Using ASTQueryTranslatorFactory
+16:29:46,794 INFO  [org.hibernate.cache.spi.UpdateTimestampsCache] (ServerService Thread Pool -- 64) HHH000250: Starting update timestamps cache at region: org.hibernate.cache.spi.UpdateTimestampsCache
+16:29:46,797 INFO  [org.hibernate.cache.internal.StandardQueryCache] (ServerService Thread Pool -- 64) HHH000248: Starting query cache at region: org.hibernate.cache.internal.StandardQueryCache
+16:29:46,797 WARN  [org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory] (ServerService Thread Pool -- 64) HHH020003: Could not find a specific ehcache configuration for cache named [org.hibernate.cache.internal.StandardQueryCache]; using defaults.
+16:29:46,813 INFO  [org.hibernate.validator.internal.util.Version] (ServerService Thread Pool -- 64) HV000001: Hibernate Validator 5.2.4.Final
+16:29:46,865 INFO  [org.hibernate.validator.internal.xml.ValidationXmlParser] (ServerService Thread Pool -- 64) HV000007: META-INF/validation.xml found. Parsing XML based configuration.
+16:29:47,050 INFO  [org.hibernate.validator.internal.xml.ValidationBootstrapParameters] (ServerService Thread Pool -- 64) HV000003: Using org.apache.deltaspike.beanvalidation.impl.CDIAwareConstraintValidatorFactory as constraint factory.
+16:29:47,065 INFO  [org.hibernate.validator.internal.xml.ValidationXmlParser] (ServerService Thread Pool -- 64) HV000007: META-INF/validation.xml found. Parsing XML based configuration.
+16:29:47,071 INFO  [org.hibernate.validator.internal.xml.ValidationBootstrapParameters] (ServerService Thread Pool -- 64) HV000003: Using org.apache.deltaspike.beanvalidation.impl.CDIAwareConstraintValidatorFactory as constraint factory.
+16:29:47,336 INFO  [org.zanata.webtrans.server.HibernateIntegrator] (ServerService Thread Pool -- 64) register event listener: org.zanata.webtrans.server.TranslationUpdateListenerLazyLoader@6975ba0e
+16:29:47,346 INFO  [org.hibernate.search.Version] (ServerService Thread Pool -- 64) HSEARCH000034: Hibernate Search 4.4.6.Final
+16:29:47,354 WARN  [org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory] (ServerService Thread Pool -- 64) HHH020003: Could not find a specific ehcache configuration for cache named [org.zanata.model.po.HPoHeader]; using defaults.
+16:29:47,406 WARN  [org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory] (ServerService Thread Pool -- 64) HHH020003: Could not find a specific ehcache configuration for cache named [org.zanata.model.HProjectIteration]; using defaults.
+16:29:47,443 WARN  [org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory] (ServerService Thread Pool -- 64) HHH020003: Could not find a specific ehcache configuration for cache named [org.zanata.model.po.HPotEntryData]; using defaults.
+16:29:47,448 WARN  [org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory] (ServerService Thread Pool -- 64) HHH020003: Could not find a specific ehcache configuration for cache named [org.zanata.model.HPerson]; using defaults.
+16:29:47,462 INFO  [org.hibernate.tuple.entity.EntityMetamodel] (ServerService Thread Pool -- 64) HHH000157: Lazy property fetching available for: org.zanata.model.tm.TransMemoryUnitVariant
+16:29:47,471 WARN  [org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory] (ServerService Thread Pool -- 64) HHH020003: Could not find a specific ehcache configuration for cache named [org.zanata.model.HTextFlow]; using defaults.
+16:29:47,486 WARN  [org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory] (ServerService Thread Pool -- 64) HHH020003: Could not find a specific ehcache configuration for cache named [org.zanata.model.HSimpleComment]; using defaults.
+16:29:47,490 WARN  [org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory] (ServerService Thread Pool -- 64) HHH020003: Could not find a specific ehcache configuration for cache named [org.zanata.model.HGlossaryTerm]; using defaults.
+16:29:47,496 WARN  [org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory] (ServerService Thread Pool -- 64) HHH020003: Could not find a specific ehcache configuration for cache named [org.zanata.model.HAccountResetPasswordKey]; using defaults.
+16:29:47,498 WARN  [org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory] (ServerService Thread Pool -- 64) HHH020003: Could not find a specific ehcache configuration for cache named [org.zanata.model.HProject]; using defaults.
+16:29:47,524 WARN  [org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory] (ServerService Thread Pool -- 64) HHH020003: Could not find a specific ehcache configuration for cache named [org.zanata.model.HTextFlowTargetReviewComment]; using defaults.
+16:29:47,561 WARN  [org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory] (ServerService Thread Pool -- 64) HHH020003: Could not find a specific ehcache configuration for cache named [org.zanata.model.HDocument]; using defaults.
+16:29:47,590 INFO  [org.hibernate.tuple.entity.EntityMetamodel] (ServerService Thread Pool -- 64) HHH000157: Lazy property fetching available for: org.zanata.model.tm.TransMemoryUnit
+16:29:47,600 WARN  [org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory] (ServerService Thread Pool -- 64) HHH020003: Could not find a specific ehcache configuration for cache named [org.zanata.model.HAccount]; using defaults.
+16:29:47,609 WARN  [org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory] (ServerService Thread Pool -- 64) HHH020003: Could not find a specific ehcache configuration for cache named [org.zanata.model.po.HPoTargetHeader]; using defaults.
+16:29:47,638 WARN  [org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory] (ServerService Thread Pool -- 64) HHH020003: Could not find a specific ehcache configuration for cache named [org.zanata.model.HCopyTransOptions]; using defaults.
+16:29:47,654 WARN  [org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory] (ServerService Thread Pool -- 64) HHH020003: Could not find a specific ehcache configuration for cache named [org.zanata.model.HLocale]; using defaults.
+16:29:47,669 WARN  [org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory] (ServerService Thread Pool -- 64) HHH020003: Could not find a specific ehcache configuration for cache named [org.zanata.model.HGlossaryEntry]; using defaults.
+16:29:47,676 WARN  [org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory] (ServerService Thread Pool -- 64) HHH020003: Could not find a specific ehcache configuration for cache named [org.zanata.model.HRoleAssignmentRule]; using defaults.
+16:29:47,685 WARN  [org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory] (ServerService Thread Pool -- 64) HHH020003: Could not find a specific ehcache configuration for cache named [org.zanata.model.HTextFlowTarget]; using defaults.
+16:29:47,714 WARN  [org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory] (ServerService Thread Pool -- 64) HHH020003: Could not find a specific ehcache configuration for cache named [org.zanata.model.HAccount.roles]; using defaults.
+16:29:47,723 WARN  [org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory] (ServerService Thread Pool -- 64) HHH020003: Could not find a specific ehcache configuration for cache named [org.zanata.model.HTextFlow.targets]; using defaults.
+16:29:47,784 WARN  [org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory] (ServerService Thread Pool -- 64) HHH020003: Could not find a specific ehcache configuration for cache named [org.zanata.model.HProject.projectIterations]; using defaults.
+16:29:47,785 WARN  [org.hibernate.cache.ehcache.AbstractEhcacheRegionFactory] (ServerService Thread Pool -- 64) HHH020003: Could not find a specific ehcache configuration for cache named [org.zanata.model.HLocale.members]; using defaults.
+16:29:48,028 INFO  [org.hibernate.search.store.impl.DirectoryProviderHelper] (ServerService Thread Pool -- 64) HSEARCH000041: Index directory not found, creating: '/opt/jboss/wildfly/zanata/indexes'
+16:29:48,028 INFO  [org.hibernate.search.store.impl.DirectoryProviderHelper] (ServerService Thread Pool -- 64) HSEARCH000041: Index directory not found, creating: '/opt/jboss/wildfly/zanata/indexes/org.zanata.model.HProjectIteration'
+16:29:48,166 INFO  [org.hibernate.search.backend.impl.lucene.SyncWorkProcessor] (ServerService Thread Pool -- 64) HSEARCH000230: Starting sync consumer thread for index 'org.zanata.model.HProjectIteration'
+16:29:48,176 INFO  [org.hibernate.search.store.impl.DirectoryProviderHelper] (ServerService Thread Pool -- 64) HSEARCH000041: Index directory not found, creating: '/opt/jboss/wildfly/zanata/indexes/org.zanata.model.tm.TransMemoryUnit'
+16:29:48,262 INFO  [org.hibernate.search.backend.impl.lucene.SyncWorkProcessor] (ServerService Thread Pool -- 64) HSEARCH000230: Starting sync consumer thread for index 'org.zanata.model.tm.TransMemoryUnit'
+16:29:48,264 INFO  [org.hibernate.search.store.impl.DirectoryProviderHelper] (ServerService Thread Pool -- 64) HSEARCH000041: Index directory not found, creating: '/opt/jboss/wildfly/zanata/indexes/org.zanata.model.HGlossaryEntry'
+16:29:48,369 INFO  [org.hibernate.search.backend.impl.lucene.SyncWorkProcessor] (ServerService Thread Pool -- 64) HSEARCH000230: Starting sync consumer thread for index 'org.zanata.model.HGlossaryEntry'
+16:29:48,370 INFO  [org.hibernate.search.store.impl.DirectoryProviderHelper] (ServerService Thread Pool -- 64) HSEARCH000041: Index directory not found, creating: '/opt/jboss/wildfly/zanata/indexes/org.zanata.model.HTextFlowTarget'
+16:29:48,464 INFO  [org.hibernate.search.backend.impl.lucene.SyncWorkProcessor] (ServerService Thread Pool -- 64) HSEARCH000230: Starting sync consumer thread for index 'org.zanata.model.HTextFlowTarget'
+16:29:48,467 INFO  [org.hibernate.search.store.impl.DirectoryProviderHelper] (ServerService Thread Pool -- 64) HSEARCH000041: Index directory not found, creating: '/opt/jboss/wildfly/zanata/indexes/org.zanata.model.HProject'
+16:29:48,548 INFO  [org.hibernate.search.backend.impl.lucene.SyncWorkProcessor] (ServerService Thread Pool -- 64) HSEARCH000230: Starting sync consumer thread for index 'org.zanata.model.HProject'
+16:29:48,550 INFO  [org.hibernate.search.store.impl.DirectoryProviderHelper] (ServerService Thread Pool -- 64) HSEARCH000041: Index directory not found, creating: '/opt/jboss/wildfly/zanata/indexes/org.zanata.model.HAccount'
+16:29:48,715 INFO  [org.hibernate.search.backend.impl.lucene.SyncWorkProcessor] (ServerService Thread Pool -- 64) HSEARCH000230: Starting sync consumer thread for index 'org.zanata.model.HAccount'
+16:29:48,717 INFO  [org.hibernate.search.store.impl.DirectoryProviderHelper] (ServerService Thread Pool -- 64) HSEARCH000041: Index directory not found, creating: '/opt/jboss/wildfly/zanata/indexes/org.zanata.model.HGlossaryTerm'
+16:29:48,883 INFO  [org.hibernate.search.backend.impl.lucene.SyncWorkProcessor] (ServerService Thread Pool -- 64) HSEARCH000230: Starting sync consumer thread for index 'org.zanata.model.HGlossaryTerm'
+16:29:49,060 INFO  [org.jboss.weld.deployer] (MSC service thread 1-7) WFLYWELD0003: Processing weld deployment zanata.war
+16:29:49,101 INFO  [org.hibernate.validator.internal.xml.ValidationXmlParser] (MSC service thread 1-7) HV000007: META-INF/validation.xml found. Parsing XML based configuration.
+16:29:49,111 INFO  [org.hibernate.validator.internal.xml.ValidationBootstrapParameters] (MSC service thread 1-7) HV000003: Using org.apache.deltaspike.beanvalidation.impl.CDIAwareConstraintValidatorFactory as constraint factory.
+16:29:49,132 INFO  [org.apache.deltaspike.core.impl.config.EnvironmentPropertyConfigSourceProvider] (MSC service thread 1-7) Custom config found by DeltaSpike. Name: 'META-INF/apache-deltaspike.properties', URL: 'vfs:/content/zanata.war/WEB-INF/classes/META-INF/apache-deltaspike.properties'
+16:29:49,132 INFO  [org.apache.deltaspike.core.impl.config.EnvironmentPropertyConfigSourceProvider] (MSC service thread 1-7) Custom config found by DeltaSpike. Name: 'META-INF/apache-deltaspike.properties', URL: 'vfs:/content/zanata.war/WEB-INF/lib/deltaspike-jpa-module-impl-1.5.4.jar/META-INF/apache-deltaspike.properties'
+16:29:49,135 INFO  [org.apache.deltaspike.core.util.ProjectStageProducer] (MSC service thread 1-7) Computed the following DeltaSpike ProjectStage: Production
+16:29:49,374 INFO  [org.zanata.notification.EmailQueueMessageReceiver] (MSC service thread 1-4) email queue payload handlers: {org.zanata.events.LanguageTeamPermissionChangedEvent=class org.zanata.notification.LanguageTeamPermissionChangeJmsMessagePayloadHandler}
+16:29:49,533 INFO  [org.jboss.weld.Version] (MSC service thread 1-4) WELD-000900: 2.3.5 (Final)
+16:29:49,741 INFO  [org.jboss.as.ejb3] (MSC service thread 1-1) WFLYEJB0042: Started message driven bean 'EmailQueueMessageReceiver' with 'activemq-ra.rar' resource adapter
+16:29:49,741 INFO  [org.jboss.as.ejb3] (MSC service thread 1-8) WFLYEJB0042: Started message driven bean 'ExpiryQueueReceiver' with 'activemq-ra.rar' resource adapter
+16:29:49,745 INFO  [org.jboss.as.ejb3] (MSC service thread 1-6) WFLYEJB0042: Started message driven bean 'DeadLetterQueueReceiver' with 'activemq-ra.rar' resource adapter
+16:29:49,871 INFO  [org.jboss.weld.Event] (MSC service thread 1-5) WELD-000411: Observer method [BackedAnnotatedMethod] protected org.apache.deltaspike.core.impl.message.MessageBundleExtension.detectInterfaces(@Observes ProcessAnnotatedType) receives events for all annotated types. Consider restricting events using @WithAnnotations or a generic type with bounds.
+16:29:49,897 INFO  [org.jboss.weld.Event] (MSC service thread 1-5) WELD-000411: Observer method [BackedAnnotatedMethod] protected org.apache.deltaspike.core.impl.exclude.extension.ExcludeExtension.vetoBeans(@Observes ProcessAnnotatedType, BeanManager) receives events for all annotated types. Consider restricting events using @WithAnnotations or a generic type with bounds.
+16:29:49,908 INFO  [org.jboss.weld.Event] (MSC service thread 1-5) WELD-000411: Observer method [BackedAnnotatedMethod] public org.apache.deltaspike.security.impl.extension.SecurityExtension.processAnnotatedType(@Observes ProcessAnnotatedType<X>) receives events for all annotated types. Consider restricting events using @WithAnnotations or a generic type with bounds.
+16:29:49,917 INFO  [org.jboss.weld.Event] (MSC service thread 1-5) WELD-000411: Observer method [BackedAnnotatedMethod] public org.apache.deltaspike.jsf.impl.injection.proxy.ConverterAndValidatorProxyExtension.findConverterAndValidatorsWhichNeedProxiesForDependencyInjectionSupport(@Observes ProcessAnnotatedType<X>, BeanManager) receives events for all annotated types. Consider restricting events using @WithAnnotations or a generic type with bounds.
+16:29:49,921 INFO  [org.jboss.weld.Event] (MSC service thread 1-5) WELD-000411: Observer method [BackedAnnotatedMethod] protected org.apache.deltaspike.jsf.impl.scope.mapped.MappedJsf2ScopeExtension.convertJsf2Scopes(@Observes ProcessAnnotatedType) receives events for all annotated types. Consider restricting events using @WithAnnotations or a generic type with bounds.
+16:29:49,947 INFO  [org.jboss.weld.Event] (MSC service thread 1-5) WELD-000411: Observer method [BackedAnnotatedMethod] protected org.apache.deltaspike.core.impl.interceptor.GlobalInterceptorExtension.promoteInterceptors(@Observes ProcessAnnotatedType, BeanManager) receives events for all annotated types. Consider restricting events using @WithAnnotations or a generic type with bounds.
+16:29:49,955 INFO  [org.jboss.weld.Event] (MSC service thread 1-5) WELD-000411: Observer method [BackedAnnotatedMethod] public org.apache.deltaspike.scheduler.impl.SchedulerExtension.findScheduledJobs(@Observes ProcessAnnotatedType<X>, BeanManager) receives events for all annotated types. Consider restricting events using @WithAnnotations or a generic type with bounds.
+16:29:49,964 INFO  [org.jboss.weld.Event] (MSC service thread 1-5) WELD-000411: Observer method [BackedAnnotatedMethod] protected org.apache.deltaspike.jsf.impl.config.view.ViewConfigExtension.buildViewConfigMetaDataTree(@Observes ProcessAnnotatedType) receives events for all annotated types. Consider restricting events using @WithAnnotations or a generic type with bounds.
+16:29:50,631 INFO  [org.jboss.weld.Bootstrap] (Weld Thread Pool -- 5) WELD-000119: Not generating any bean definitions from org.zanata.exception.handler.ClientAbortExceptionHandler because of underlying class loading error: Type org.apache.catalina.connector.ClientAbortException from [Module "deployment.zanata.war:main" from Service Module Loader] not found.  If this is unexpected, enable DEBUG logging to see the full error.
+16:29:51,206 INFO  [org.apache.deltaspike.core.impl.exclude.extension.ExcludeExtension] (MSC service thread 1-5) org.zanata.jpa.NoNestingTransactionStrategy is configured as global-alternative
+16:29:52,376 INFO  [org.apache.deltaspike.scheduler.impl.AbstractQuartzScheduler] (MSC service thread 1-5) no custom quartz-config file found. falling back to the default config provided by quartz.
+16:29:52,404 INFO  [org.quartz.impl.StdSchedulerFactory] (MSC service thread 1-5) Using default implementation for ThreadExecutor
+16:29:52,406 INFO  [org.quartz.simpl.SimpleThreadPool] (MSC service thread 1-5) Job execution threads will use class loader of thread: MSC service thread 1-5
+16:29:52,418 INFO  [org.quartz.core.SchedulerSignalerImpl] (MSC service thread 1-5) Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+16:29:52,419 INFO  [org.quartz.core.QuartzScheduler] (MSC service thread 1-5) Quartz Scheduler v.2.2.1 created.
+16:29:52,419 INFO  [org.quartz.core.QuartzScheduler] (MSC service thread 1-5) JobFactory set to: org.apache.deltaspike.scheduler.impl.CdiAwareJobFactory@5d7af55e
+16:29:52,420 INFO  [org.quartz.simpl.RAMJobStore] (MSC service thread 1-5) RAMJobStore initialized.
+16:29:52,420 INFO  [org.quartz.core.QuartzScheduler] (MSC service thread 1-5) Scheduler meta-data: Quartz Scheduler (v2.2.1) 'DefaultQuartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+16:29:52,421 INFO  [org.quartz.impl.StdSchedulerFactory] (MSC service thread 1-5) Quartz scheduler 'DefaultQuartzScheduler' initialized from an externally provided properties instance.
+16:29:52,421 INFO  [org.quartz.impl.StdSchedulerFactory] (MSC service thread 1-5) Quartz scheduler version: 2.2.1
+16:29:53,451 INFO  [org.quartz.core.QuartzScheduler] (Thread-98) Scheduler DefaultQuartzScheduler_$_NON_CLUSTERED started.
+16:29:54,361 INFO  [org.zanata.servlet.ZanataServletExtension] (ServerService Thread Pool -- 66) Cookie path is "/zanata"
+16:29:54,390 INFO  [org.richfaces.log.Webapp] (ServerService Thread Pool -- 66) Auto-registered servlet ResourceServlet with mapping '/org.richfaces.resources/*'
+16:29:54,409 INFO  [se.jiderhamn.classloader.leak.prevention.ClassLoaderLeakPreventor] (ServerService Thread Pool -- 66) Settings for org.zanata.servlet.LeakListener (CL: 0x2af0837b):
+16:29:54,409 INFO  [se.jiderhamn.classloader.leak.prevention.ClassLoaderLeakPreventor] (ServerService Thread Pool -- 66)   stopThreads = true
+16:29:54,409 INFO  [se.jiderhamn.classloader.leak.prevention.ClassLoaderLeakPreventor] (ServerService Thread Pool -- 66)   stopTimerThreads = true
+16:29:54,409 INFO  [se.jiderhamn.classloader.leak.prevention.ClassLoaderLeakPreventor] (ServerService Thread Pool -- 66)   executeShutdownHooks = true
+16:29:54,409 INFO  [se.jiderhamn.classloader.leak.prevention.ClassLoaderLeakPreventor] (ServerService Thread Pool -- 66)   threadWaitMs = 5000 ms
+16:29:54,409 INFO  [se.jiderhamn.classloader.leak.prevention.ClassLoaderLeakPreventor] (ServerService Thread Pool -- 66)   shutdownHookWaitMs = 10000 ms
+16:29:54,409 INFO  [se.jiderhamn.classloader.leak.prevention.ClassLoaderLeakPreventor] (ServerService Thread Pool -- 66) Initializing context by loading some known offenders with system classloader
+16:29:55,250 INFO  [liquibase] (ServerService Thread Pool -- 66) Successfully acquired change log lock
+16:29:56,316 INFO  [liquibase] (ServerService Thread Pool -- 66) Reading from zanata.DATABASECHANGELOG
+16:29:56,759 INFO  [liquibase] (ServerService Thread Pool -- 66) db/db.changelog.xml: db/changelogs/db.changelog-validations.xml::check-innodb::sflaniga@redhat.com: ChangeSet db/changelogs/db.changelog-validations.xml::check-innodb::sflaniga@redhat.com ran successfully in 315ms
+16:29:56,869 INFO  [liquibase] (ServerService Thread Pool -- 66) Successfully released change log lock
+16:29:56,928 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66) App server release codename: Kenny
+16:29:56,928 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66) App server release version: 2.2.0.Final
+16:29:56,928 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66) WildFly Full version: 10.1.0.Final
+16:29:56,947 INFO  [org.zanata.ApplicationConfiguration] (ServerService Thread Pool -- 66) Reloading configuration
+16:29:57,029 INFO  [org.zanata.ApplicationConfiguration] (ServerService Thread Pool -- 66) Email log appender is disabled.
+16:29:57,030 WARN  [org.zanata.config.SystemPropertyConfigStore] (ServerService Thread Pool -- 66) Invalid system property value [null] is given to authenticatedSessionTimeoutMinutes. Fall back to default 180
+16:29:57,033 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66) ============================================
+16:29:57,033 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66)         &(                             
+16:29:57,033 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66)        (((((& (((((((((((              
+16:29:57,033 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66)      ((((((((((((((((((((((((          
+16:29:57,033 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66)    #((((((((((((((         (((((       
+16:29:57,033 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66)   (((((((((((((((((((        #((((     
+16:29:57,033 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66)  ((((((((((((((((((((((#       ((((    
+16:29:57,033 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66)    (((((((((((((((((((((((#      (((   
+16:29:57,033 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66)   (((&   #(((((((((((((((((((    &(((  
+16:29:57,033 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66)   (((         ((((((((((((((      (((  
+16:29:57,034 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66)   ((#          (((((((((((        (((  
+16:29:57,034 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66)   ((#        ((((((((((((         (((  
+16:29:57,034 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66)   (((       ((((((((((((          (((  
+16:29:57,034 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66)   (((      (((((((((((&           (((  
+16:29:57,034 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66)    (((      ((((((((((((         (((   
+16:29:57,034 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66)     (((         ((((((((((      (((    
+16:29:57,034 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66)      ((((          #((((((((  ((((     
+16:29:57,034 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66)        (((((           (((((((((       
+16:29:57,034 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66)          &(((((((%   %((((((((((       
+16:29:57,034 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66)              #(((((((((((#     ((#     
+16:29:57,034 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66) 
+16:29:57,034 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66)   Zanata version: 3.9.6
+16:29:57,034 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66)   SCM: git-server-3.9.6
+16:29:57,034 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66)   Red Hat Inc 2008-2016
+16:29:57,034 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66) ============================================
+16:29:57,034 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66) Internal authentication: enabled
+16:29:57,034 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66) OpenID authentication: enabled
+16:29:57,034 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66) Enable copyTrans: true
+16:29:57,034 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66) JavaMelody stats directory: /opt/jboss/wildfly/zanata/stats
+16:29:57,034 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66) Lucene index directory: /opt/jboss/wildfly/zanata/indexes
+16:29:57,043 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66) Mail Session (JNDI): jboss/mail/Default
+16:29:57,105 INFO  [de.novanic.eventservice.service.registry.DefaultEventRegistry] (ServerService Thread Pool -- 66) Server: Configuration changed - EventServiceConfiguration (Properties "eventservice.properties")
+  Min.: 0ms; Max.: 20000ms; Timeout: 90000ms
+16:29:57,106 INFO  [org.zanata.webtrans.server.TranslationWorkspaceManagerImpl] (ServerService Thread Pool -- 66) starting...
+16:29:57,106 INFO  [org.zanata.ZanataInit] (ServerService Thread Pool -- 66) Started Zanata...
+16:29:57,247 INFO  [org.zanata.util.EssentialDataCreator] (ServerService Thread Pool -- 66) Updating 'user' to include '[project-creator]'
+16:29:57,329 WARN  [org.zanata.util.EssentialDataCreator] (ServerService Thread Pool -- 66) No admin users found. Admin users can be enabled in jndi bindings: java:global/zanata/security/admin-users
+16:29:57,401 INFO  [javax.enterprise.resource.webcontainer.jsf.config] (ServerService Thread Pool -- 66) Initializing Mojarra 2.2.13.SP1 20160303-1204 for context '/zanata'
+16:30:00,095 INFO  [org.hibernate.validator.internal.xml.ValidationXmlParser] (ServerService Thread Pool -- 66) HV000007: META-INF/validation.xml found. Parsing XML based configuration.
+16:30:00,102 INFO  [org.hibernate.validator.internal.xml.ValidationBootstrapParameters] (ServerService Thread Pool -- 66) HV000003: Using org.apache.deltaspike.beanvalidation.impl.CDIAwareConstraintValidatorFactory as constraint factory.
+16:30:00,156 INFO  [org.richfaces.log.Cache] (ServerService Thread Pool -- 66) Using cache configuration: vfs:/content/zanata.war/WEB-INF/classes/ehcache.xml
+16:30:00,157 INFO  [org.richfaces.log.Cache] (ServerService Thread Pool -- 66) Selected [org.richfaces.cache.EhCacheCacheFactory]
+16:30:00,157 INFO  [org.richfaces.log.Cache] (ServerService Thread Pool -- 66) Creating EhCache cache instance
+16:30:00,161 INFO  [org.richfaces.log.Application] (ServerService Thread Pool -- 66) RichFaces Core by JBoss by Red Hat, version 4.5.11.Final
+16:30:00,260 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002225: Deploying javax.ws.rs.core.Application: class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,261 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.service.IntrospectableObjectMonitorService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,261 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002205: Adding provider class org.zanata.rest.ReadOnlyEntityExceptionMapper from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,261 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002205: Adding provider class org.zanata.rest.IllegalArgumentExceptionMapper from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,261 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002205: Adding provider class org.zanata.rest.ZanataRestSecurityInterceptor from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,261 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.service.TranslatedDocResourceService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,261 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002205: Adding provider class org.zanata.rest.AccessDeniedExceptionMapper from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,261 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.service.AsynchronousProcessResourceService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,262 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.service.VersionService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,262 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.editor.service.TextFlowService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,262 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.service.AccountService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,262 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.editor.service.TranslationService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,262 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002205: Adding provider class org.zanata.rest.ZanataJacksonJsonProvider from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,262 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.editor.service.ProjectService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,262 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.service.GlossaryService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,262 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.service.ProjectService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,262 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.editor.service.TransUnitService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,262 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.service.SourceDocResourceService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,262 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.service.FileService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,262 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.service.TranslationMemoryResourceService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,262 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.service.impl.SearchServiceImpl from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,262 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.service.ProjectVersionService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,262 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002205: Adding provider class org.zanata.rest.NoSuchEntityExceptionMapper from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,262 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.editor.service.StatisticsService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,263 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.service.ProjectsService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,263 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.service.ProjectIterationLocalesService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,263 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002205: Adding provider class org.zanata.rest.HibernateExceptionMapper from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,263 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.service.ServerConfigurationService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,263 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.service.StatisticsServiceImpl from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,263 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002205: Adding provider class org.zanata.rest.ZanataRestResponseInterceptor from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,263 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002205: Adding provider class org.zanata.rest.SessionDestroyFilter from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,263 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.service.ProjectLocalesService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,263 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.editor.service.UserService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,263 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002205: Adding provider class org.zanata.rest.HibernateValidationInterceptor from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,263 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002205: Adding provider class org.zanata.rest.NotLoggedInExceptionMapper from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,263 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002205: Adding provider class org.zanata.rest.ZanataRestVersionInterceptor from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,263 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.editor.service.LocalesService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,264 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002205: Adding provider class org.zanata.rest.ConstraintViolationExceptionMapper from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,264 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002205: Adding provider class org.zanata.rest.ZanataServiceExceptionMapper from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,264 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.service.CopyTransResourceService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,264 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.editor.service.SuggestionsService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,264 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002205: Adding provider class org.zanata.rest.TMXParseExceptionMapper from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,264 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002200: Adding class resource org.zanata.rest.service.ProjectIterationService from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,264 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002205: Adding provider class org.zanata.rest.JsonPWriterInterceptor from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,264 INFO  [org.jboss.resteasy.resteasy_jaxrs.i18n] (ServerService Thread Pool -- 66) RESTEASY002205: Adding provider class org.zanata.rest.AuthorizationExceptionMapper from Application class org.zanata.rest.Application$Proxy$_$$_WeldClientProxy
+16:30:00,386 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 66) WFLYUT0021: Registered web context: /zanata
+16:30:00,408 INFO  [org.jboss.as.server] (ServerService Thread Pool -- 36) WFLYSRV0010: Deployed "mysql-connector-java.jar" (runtime-name : "mysql-connector-java.jar")
+16:30:00,408 INFO  [org.jboss.as.server] (ServerService Thread Pool -- 36) WFLYSRV0010: Deployed "zanata.war" (runtime-name : "zanata.war")
+16:30:00,495 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0060: Http management interface listening on http://127.0.0.1:9990/management
+16:30:00,496 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0051: Admin console listening on http://127.0.0.1:9990
+16:30:00,496 INFO [org.jboss.as] (Controller Boot Thread) WFLYSRV0025: WildFly Full 10.1.0.Final (WildFly Core 2.2.0.Final) started in 31443ms - Started 712 of 991 services (461 services are lazy, passive or on-demand)
