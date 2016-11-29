@@ -4,7 +4,7 @@ metadata:
   name: zanata-db-pv
 spec:
   capacity:
-    storage: 500M
+    storage: 550M
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
