@@ -77,3 +77,5 @@ Accessing Openshift Web UI
 Creating the initial zanata admin user, otherwise you will not be able to login
 
 https://github.com/zanata/zanata-docker-files/blob/master/zanata-server/conf/admin-user-setup.sql
+
+Update.
