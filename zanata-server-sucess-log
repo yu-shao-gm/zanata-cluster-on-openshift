@@ -293,4 +293,4 @@
 16:30:00,408 INFO  [org.jboss.as.server] (ServerService Thread Pool -- 36) WFLYSRV0010: Deployed "zanata.war" (runtime-name : "zanata.war")
 16:30:00,495 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0060: Http management interface listening on http://127.0.0.1:9990/management
 16:30:00,496 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0051: Admin console listening on http://127.0.0.1:9990
-16:30:00,496 INFO [org.jboss.as] (Controller Boot Thread) WFLYSRV0025: WildFly Full 10.1.0.Final (WildFly Core 2.2.0.Final) started in 31443ms - Started 712 of 991 services (461 services are lazy, passive or on-demand)
+16:30:00,496 INFO [org.jboss.as] (Controller Boot Thread) WFLYSRV0025: WildFly Full 10.1.0.Final (WildFly Core 2.2.0.Final) started in 31443ms - Started 712 of 991 services (461 services are lazy, passive or on-demand)my test 
