@@ -5,6 +5,12 @@ By: Yu Shao <yshao@redhat.com>
 Based on Fedora 24
 
 Install docker, as root user:
+- # dnf yum install docker
+
+  File: /etc/sysconfig/docker
+  Uncomment the INSECURE_REGISTRY line and change it to:
+  INSECURE_REGISTRY='--insecure-registry 172.30.0.0/16'
+
 - # dnf docker start
 - # systemctl start docker
 - # systemctl stop httpd
