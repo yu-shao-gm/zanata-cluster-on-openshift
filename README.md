@@ -81,6 +81,9 @@ Accessing Openshift Web UI
 - Zanata is deployed at:
   https://node-ipaddr:30000/zanata or
   https://localizatoin-pod-ipaddr:8080/zanata
+  (I am hitting this bug with Openshift Origin:
+  https://bugzilla.redhat.com/show_bug.cgi?id=1280279
+  To bypass this issue, disabling the firewall, service stop firewallds)
   
 Creating the initial zanata admin user, otherwise you will not be able to login
 
