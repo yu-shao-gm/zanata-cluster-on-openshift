@@ -1,0 +1,10 @@
+ $ oc get service myetcd
+NAME LABELS SELECTOR IP(S) PORT(S)
+myetcd name=myetcd,template=myetcd name=etcd 172.30.23.221 2379/TCP
+
+Which is accessible from within the cluster but not outside against the nodeport.
+
+Here is one way it could be done:
+
+iptables -t nat -I KUBE-NODEPORT-CONTAINER 1 -p tcp --dport 30000 -j MARK --set-mark 0x42
+iptables -A OS_FIREWALL_ALLOW -m state --state NEW -m mark --mark 0x42 -j ACCEPT
