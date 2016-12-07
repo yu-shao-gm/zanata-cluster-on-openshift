@@ -31,13 +31,12 @@ Download zanata template files for Openshift
   
 Preparing the storage on your local host machine
 
-# mkdir /var/zanata-storage
-# chmod 777 /var/zanata-storage
-# chcon -R -t svirt_sandbox_file_t /var/zanata-storage
-
-# mkdir /var/zanata-db-storage
-# chmod 777 /var/zanata-db-storage
-# chcon -R -t svirt_sandbox_file_t /var/zanata-db-storage
+- # mkdir /var/zanata-storage
+- # chmod 777 /var/zanata-storage
+- # chcon -R -t svirt_sandbox_file_t /var/zanata-storage
+- # mkdir /var/zanata-db-storage
+- # chmod 777 /var/zanata-db-storage
+- # chcon -R -t svirt_sandbox_file_t /var/zanata-db-storage
 
 Creating Persistent Vlume on your local machine
 
