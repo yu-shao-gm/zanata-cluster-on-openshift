@@ -12,6 +12,8 @@ Install docker, as root user:
   INSECURE_REGISTRY='--insecure-registry 172.30.0.0/16'
 
 - # dnf docker start
+- # systemctl enable docker 
+- # systemctl disable httpd
 - # systemctl start docker
 - # systemctl stop httpd
 
