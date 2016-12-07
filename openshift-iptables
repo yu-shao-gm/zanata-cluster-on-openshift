@@ -1,0 +1,447 @@
+[root@dhcp-49-5 ~]# iptables -t nat -L
+Chain PREROUTING (policy ACCEPT)
+target     prot opt source               destination         
+KUBE-SERVICES  all  --  anywhere             anywhere             /* kubernetes service portals */
+KUBE-PORTALS-CONTAINER  all  --  anywhere             anywhere             /* handle ClusterIPs; NOTE: this must be before the NodePort rules */
+PREROUTING_direct  all  --  anywhere             anywhere            
+PREROUTING_ZONES_SOURCE  all  --  anywhere             anywhere            
+PREROUTING_ZONES  all  --  anywhere             anywhere            
+DOCKER     all  --  anywhere             anywhere             ADDRTYPE match dst-type LOCAL
+KUBE-NODEPORT-CONTAINER  all  --  anywhere             anywhere             ADDRTYPE match dst-type LOCAL /* handle service NodePorts; NOTE: this must be the last rule in the chain */
+
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination         
+KUBE-SERVICES  all  --  anywhere             anywhere             /* kubernetes service portals */
+KUBE-PORTALS-HOST  all  --  anywhere             anywhere             /* handle ClusterIPs; NOTE: this must be before the NodePort rules */
+OUTPUT_direct  all  --  anywhere             anywhere            
+DOCKER     all  --  anywhere            !loopback/8           ADDRTYPE match dst-type LOCAL
+KUBE-NODEPORT-HOST  all  --  anywhere             anywhere             ADDRTYPE match dst-type LOCAL /* handle service NodePorts; NOTE: this must be the last rule in the chain */
+
+Chain POSTROUTING (policy ACCEPT)
+target     prot opt source               destination         
+KUBE-POSTROUTING  all  --  anywhere             anywhere             /* kubernetes postrouting rules */
+MASQUERADE  all  --  172.17.0.0/16        anywhere            
+RETURN     all  --  192.168.100.0/24     base-address.mcast.net/24 
+RETURN     all  --  192.168.100.0/24     255.255.255.255     
+MASQUERADE  tcp  --  192.168.100.0/24    !192.168.100.0/24     masq ports: 1024-65535
+MASQUERADE  udp  --  192.168.100.0/24    !192.168.100.0/24     masq ports: 1024-65535
+MASQUERADE  all  --  192.168.100.0/24    !192.168.100.0/24    
+POSTROUTING_direct  all  --  anywhere             anywhere            
+POSTROUTING_ZONES_SOURCE  all  --  anywhere             anywhere            
+POSTROUTING_ZONES  all  --  anywhere             anywhere            
+
+Chain DOCKER (2 references)
+target     prot opt source               destination         
+RETURN     all  --  anywhere             anywhere            
+
+Chain KUBE-MARK-DROP (0 references)
+target     prot opt source               destination         
+MARK       all  --  anywhere             anywhere             MARK or 0x8000
+
+Chain KUBE-MARK-MASQ (11 references)
+target     prot opt source               destination         
+MARK       all  --  anywhere             anywhere             MARK or 0x4000
+
+Chain KUBE-NODEPORT-CONTAINER (1 references)
+target     prot opt source               destination         
+
+Chain KUBE-NODEPORT-HOST (1 references)
+target     prot opt source               destination         
+
+Chain KUBE-NODEPORTS (1 references)
+target     prot opt source               destination         
+KUBE-MARK-MASQ  tcp  --  anywhere             anywhere             /* myproject/zanata-mariadb: */ tcp dpt:31829
+KUBE-SVC-TKJXVK5BQZAB2KFR  tcp  --  anywhere             anywhere             /* myproject/zanata-mariadb: */ tcp dpt:31829
+KUBE-MARK-MASQ  tcp  --  anywhere             anywhere             /* myproject/zanata-localization: */ tcp dpt:ndmps
+KUBE-SVC-A3Z62ONHYXNEOOXO  tcp  --  anywhere             anywhere             /* myproject/zanata-localization: */ tcp dpt:ndmps
+
+Chain KUBE-PORTALS-CONTAINER (1 references)
+target     prot opt source               destination         
+
+Chain KUBE-PORTALS-HOST (1 references)
+target     prot opt source               destination         
+
+Chain KUBE-POSTROUTING (1 references)
+target     prot opt source               destination         
+MASQUERADE  all  --  anywhere             anywhere             /* kubernetes service traffic requiring SNAT */ mark match 0x4000/0x4000
+
+Chain KUBE-SEP-37QI5NYO3WDRAYAJ (2 references)
+target     prot opt source               destination         
+KUBE-MARK-MASQ  all  --  dhcp-49-93.bos.redhat.com  anywhere             /* default/kubernetes:dns-tcp */
+DNAT       tcp  --  anywhere             anywhere             /* default/kubernetes:dns-tcp */ recent: SET name: KUBE-SEP-37QI5NYO3WDRAYAJ side: source mask: 255.255.255.255 tcp to:10.18.49.93:8053
+
+Chain KUBE-SEP-3DDMAB3JMKYJH2MH (1 references)
+target     prot opt source               destination         
+KUBE-MARK-MASQ  all  --  172.17.0.7           anywhere             /* myproject/zanata-localization: */
+DNAT       tcp  --  anywhere             anywhere             /* myproject/zanata-localization: */ tcp to:172.17.0.7:8080
+
+Chain KUBE-SEP-AVHPG52HMOAJO3BT (1 references)
+target     prot opt source               destination         
+KUBE-MARK-MASQ  all  --  172.17.0.6           anywhere             /* myproject/zanata-mariadb: */
+DNAT       tcp  --  anywhere             anywhere             /* myproject/zanata-mariadb: */ tcp to:172.17.0.6:3306
+
+Chain KUBE-SEP-GHHZ5HLKQOLYNMIP (1 references)
+target     prot opt source               destination         
+KUBE-MARK-MASQ  all  --  dhcp-49-93.bos.redhat.com  anywhere             /* default/router:443-tcp */
+DNAT       tcp  --  anywhere             anywhere             /* default/router:443-tcp */ tcp to:10.18.49.93:443
+
+Chain KUBE-SEP-KIFR4PZ5SVSQQ24K (2 references)
+target     prot opt source               destination         
+KUBE-MARK-MASQ  all  --  dhcp-49-93.bos.redhat.com  anywhere             /* default/kubernetes:https */
+DNAT       tcp  --  anywhere             anywhere             /* default/kubernetes:https */ recent: SET name: KUBE-SEP-KIFR4PZ5SVSQQ24K side: source mask: 255.255.255.255 tcp to:10.18.49.93:8443
+
+Chain KUBE-SEP-LWOYOYE5FBDPV3ZV (1 references)
+target     prot opt source               destination         
+KUBE-MARK-MASQ  all  --  dhcp-49-93.bos.redhat.com  anywhere             /* default/router:1936-tcp */
+DNAT       tcp  --  anywhere             anywhere             /* default/router:1936-tcp */ tcp to:10.18.49.93:1936
+
+Chain KUBE-SEP-POAYXJDFZUSTCXO4 (1 references)
+target     prot opt source               destination         
+KUBE-MARK-MASQ  all  --  dhcp-49-93.bos.redhat.com  anywhere             /* default/router:80-tcp */
+DNAT       tcp  --  anywhere             anywhere             /* default/router:80-tcp */ tcp to:10.18.49.93:80
+
+Chain KUBE-SEP-QWMJLIGOOPK5E4HY (2 references)
+target     prot opt source               destination         
+KUBE-MARK-MASQ  all  --  dhcp-49-93.bos.redhat.com  anywhere             /* default/kubernetes:dns */
+DNAT       udp  --  anywhere             anywhere             /* default/kubernetes:dns */ recent: SET name: KUBE-SEP-QWMJLIGOOPK5E4HY side: source mask: 255.255.255.255 udp to:10.18.49.93:8053
+
+Chain KUBE-SEP-Y4VJ4WLG5Y25LS3M (2 references)
+target     prot opt source               destination         
+KUBE-MARK-MASQ  all  --  172.17.0.8           anywhere             /* default/docker-registry:5000-tcp */
+DNAT       tcp  --  anywhere             anywhere             /* default/docker-registry:5000-tcp */ recent: SET name: KUBE-SEP-Y4VJ4WLG5Y25LS3M side: source mask: 255.255.255.255 tcp to:172.17.0.8:5000
+
+Chain KUBE-SERVICES (2 references)
+target     prot opt source               destination         
+KUBE-SVC-BA6I5HTZKAAAJT56  tcp  --  anywhere             172.30.0.1           /* default/kubernetes:dns-tcp cluster IP */ tcp dpt:domain
+KUBE-SVC-GQKZAHCS5DTMHUQ6  tcp  --  anywhere             172.30.68.34         /* default/router:80-tcp cluster IP */ tcp dpt:http
+KUBE-SVC-IKV43KYNCXS2W7KZ  tcp  --  anywhere             172.30.68.34         /* default/router:443-tcp cluster IP */ tcp dpt:https
+KUBE-SVC-TKJXVK5BQZAB2KFR  tcp  --  anywhere             172.30.254.99        /* myproject/zanata-mariadb: cluster IP */ tcp dpt:mysql
+KUBE-SVC-A3Z62ONHYXNEOOXO  tcp  --  anywhere             172.30.103.219       /* myproject/zanata-localization: cluster IP */ tcp dpt:webcache
+KUBE-SVC-3VQ6B3MLH7E2SZT4  udp  --  anywhere             172.30.0.1           /* default/kubernetes:dns cluster IP */ udp dpt:domain
+KUBE-SVC-ECTPRXTXBM34L34Q  tcp  --  anywhere             172.30.134.72        /* default/docker-registry:5000-tcp cluster IP */ tcp dpt:commplex-main
+KUBE-SVC-4JCRTMMYZAAYMIJ2  tcp  --  anywhere             172.30.68.34         /* default/router:1936-tcp cluster IP */ tcp dpt:jetcmeserver
+KUBE-SVC-NPX46M4PTMTKRN6Y  tcp  --  anywhere             172.30.0.1           /* default/kubernetes:https cluster IP */ tcp dpt:https
+KUBE-NODEPORTS  all  --  anywhere             anywhere             /* kubernetes service nodeports; NOTE: this must be the last rule in this chain */ ADDRTYPE match dst-type LOCAL
+
+Chain KUBE-SVC-3VQ6B3MLH7E2SZT4 (1 references)
+target     prot opt source               destination         
+KUBE-SEP-QWMJLIGOOPK5E4HY  all  --  anywhere             anywhere             /* default/kubernetes:dns */ recent: CHECK seconds: 180 reap name: KUBE-SEP-QWMJLIGOOPK5E4HY side: source mask: 255.255.255.255
+KUBE-SEP-QWMJLIGOOPK5E4HY  all  --  anywhere             anywhere             /* default/kubernetes:dns */
+
+Chain KUBE-SVC-4JCRTMMYZAAYMIJ2 (1 references)
+target     prot opt source               destination         
+KUBE-SEP-LWOYOYE5FBDPV3ZV  all  --  anywhere             anywhere             /* default/router:1936-tcp */
+
+Chain KUBE-SVC-A3Z62ONHYXNEOOXO (2 references)
+target     prot opt source               destination         
+KUBE-SEP-3DDMAB3JMKYJH2MH  all  --  anywhere             anywhere             /* myproject/zanata-localization: */
+
+Chain KUBE-SVC-BA6I5HTZKAAAJT56 (1 references)
+target     prot opt source               destination         
+KUBE-SEP-37QI5NYO3WDRAYAJ  all  --  anywhere             anywhere             /* default/kubernetes:dns-tcp */ recent: CHECK seconds: 180 reap name: KUBE-SEP-37QI5NYO3WDRAYAJ side: source mask: 255.255.255.255
+KUBE-SEP-37QI5NYO3WDRAYAJ  all  --  anywhere             anywhere             /* default/kubernetes:dns-tcp */
+
+Chain KUBE-SVC-ECTPRXTXBM34L34Q (1 references)
+target     prot opt source               destination         
+KUBE-SEP-Y4VJ4WLG5Y25LS3M  all  --  anywhere             anywhere             /* default/docker-registry:5000-tcp */ recent: CHECK seconds: 180 reap name: KUBE-SEP-Y4VJ4WLG5Y25LS3M side: source mask: 255.255.255.255
+KUBE-SEP-Y4VJ4WLG5Y25LS3M  all  --  anywhere             anywhere             /* default/docker-registry:5000-tcp */
+
+Chain KUBE-SVC-GQKZAHCS5DTMHUQ6 (1 references)
+target     prot opt source               destination         
+KUBE-SEP-POAYXJDFZUSTCXO4  all  --  anywhere             anywhere             /* default/router:80-tcp */
+
+Chain KUBE-SVC-IKV43KYNCXS2W7KZ (1 references)
+target     prot opt source               destination         
+KUBE-SEP-GHHZ5HLKQOLYNMIP  all  --  anywhere             anywhere             /* default/router:443-tcp */
+
+Chain KUBE-SVC-NPX46M4PTMTKRN6Y (1 references)
+target     prot opt source               destination         
+KUBE-SEP-KIFR4PZ5SVSQQ24K  all  --  anywhere             anywhere             /* default/kubernetes:https */ recent: CHECK seconds: 180 reap name: KUBE-SEP-KIFR4PZ5SVSQQ24K side: source mask: 255.255.255.255
+KUBE-SEP-KIFR4PZ5SVSQQ24K  all  --  anywhere             anywhere             /* default/kubernetes:https */
+
+Chain KUBE-SVC-TKJXVK5BQZAB2KFR (2 references)
+target     prot opt source               destination         
+KUBE-SEP-AVHPG52HMOAJO3BT  all  --  anywhere             anywhere             /* myproject/zanata-mariadb: */
+
+Chain OUTPUT_direct (1 references)
+target     prot opt source               destination         
+
+Chain POSTROUTING_ZONES (1 references)
+target     prot opt source               destination         
+POST_FedoraWorkstation  all  --  anywhere             anywhere            [goto] 
+POST_FedoraWorkstation  all  --  anywhere             anywhere            [goto] 
+
+Chain POSTROUTING_ZONES_SOURCE (1 references)
+target     prot opt source               destination         
+
+Chain POSTROUTING_direct (1 references)
+target     prot opt source               destination         
+
+Chain POST_FedoraWorkstation (2 references)
+target     prot opt source               destination         
+POST_FedoraWorkstation_log  all  --  anywhere             anywhere            
+POST_FedoraWorkstation_deny  all  --  anywhere             anywhere            
+POST_FedoraWorkstation_allow  all  --  anywhere             anywhere            
+
+Chain POST_FedoraWorkstation_allow (1 references)
+target     prot opt source               destination         
+
+Chain POST_FedoraWorkstation_deny (1 references)
+target     prot opt source               destination         
+
+Chain POST_FedoraWorkstation_log (1 references)
+target     prot opt source               destination         
+
+Chain PREROUTING_ZONES (1 references)
+target     prot opt source               destination         
+PRE_FedoraWorkstation  all  --  anywhere             anywhere            [goto] 
+PRE_FedoraWorkstation  all  --  anywhere             anywhere            [goto] 
+
+Chain PREROUTING_ZONES_SOURCE (1 references)
+target     prot opt source               destination         
+
+Chain PREROUTING_direct (1 references)
+target     prot opt source               destination         
+
+Chain PRE_FedoraWorkstation (2 references)
+target     prot opt source               destination         
+PRE_FedoraWorkstation_log  all  --  anywhere             anywhere            
+PRE_FedoraWorkstation_deny  all  --  anywhere             anywhere            
+PRE_FedoraWorkstation_allow  all  --  anywhere             anywhere            
+
+Chain PRE_FedoraWorkstation_allow (1 references)
+target     prot opt source               destination         
+
+Chain PRE_FedoraWorkstation_deny (1 references)
+target     prot opt source               destination         
+
+Chain PRE_FedoraWorkstation_log (1 references)
+target     prot opt source               destination         
+[root@dhcp-49-5 ~]# iptables -t nat -Lv
+iptables: No chain/target/match by that name.
+[root@dhcp-49-5 ~]# iptables -t nat -L
+Chain PREROUTING (policy ACCEPT)
+target     prot opt source               destination         
+KUBE-SERVICES  all  --  anywhere             anywhere             /* kubernetes service portals */
+KUBE-PORTALS-CONTAINER  all  --  anywhere             anywhere             /* handle ClusterIPs; NOTE: this must be before the NodePort rules */
+PREROUTING_direct  all  --  anywhere             anywhere            
+PREROUTING_ZONES_SOURCE  all  --  anywhere             anywhere            
+PREROUTING_ZONES  all  --  anywhere             anywhere            
+DOCKER     all  --  anywhere             anywhere             ADDRTYPE match dst-type LOCAL
+KUBE-NODEPORT-CONTAINER  all  --  anywhere             anywhere             ADDRTYPE match dst-type LOCAL /* handle service NodePorts; NOTE: this must be the last rule in the chain */
+
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination         
+KUBE-SERVICES  all  --  anywhere             anywhere             /* kubernetes service portals */
+KUBE-PORTALS-HOST  all  --  anywhere             anywhere             /* handle ClusterIPs; NOTE: this must be before the NodePort rules */
+OUTPUT_direct  all  --  anywhere             anywhere            
+DOCKER     all  --  anywhere            !loopback/8           ADDRTYPE match dst-type LOCAL
+KUBE-NODEPORT-HOST  all  --  anywhere             anywhere             ADDRTYPE match dst-type LOCAL /* handle service NodePorts; NOTE: this must be the last rule in the chain */
+
+Chain POSTROUTING (policy ACCEPT)
+target     prot opt source               destination         
+KUBE-POSTROUTING  all  --  anywhere             anywhere             /* kubernetes postrouting rules */
+MASQUERADE  all  --  172.17.0.0/16        anywhere            
+RETURN     all  --  192.168.100.0/24     base-address.mcast.net/24 
+RETURN     all  --  192.168.100.0/24     255.255.255.255     
+MASQUERADE  tcp  --  192.168.100.0/24    !192.168.100.0/24     masq ports: 1024-65535
+MASQUERADE  udp  --  192.168.100.0/24    !192.168.100.0/24     masq ports: 1024-65535
+MASQUERADE  all  --  192.168.100.0/24    !192.168.100.0/24    
+POSTROUTING_direct  all  --  anywhere             anywhere            
+POSTROUTING_ZONES_SOURCE  all  --  anywhere             anywhere            
+POSTROUTING_ZONES  all  --  anywhere             anywhere            
+
+Chain DOCKER (2 references)
+target     prot opt source               destination         
+RETURN     all  --  anywhere             anywhere            
+
+Chain KUBE-MARK-DROP (0 references)
+target     prot opt source               destination         
+MARK       all  --  anywhere             anywhere             MARK or 0x8000
+
+Chain KUBE-MARK-MASQ (11 references)
+target     prot opt source               destination         
+MARK       all  --  anywhere             anywhere             MARK or 0x4000
+
+Chain KUBE-NODEPORT-CONTAINER (1 references)
+target     prot opt source               destination         
+
+Chain KUBE-NODEPORT-HOST (1 references)
+target     prot opt source               destination         
+
+Chain KUBE-NODEPORTS (1 references)
+target     prot opt source               destination         
+KUBE-MARK-MASQ  tcp  --  anywhere             anywhere             /* myproject/zanata-localization: */ tcp dpt:ndmps
+KUBE-SVC-A3Z62ONHYXNEOOXO  tcp  --  anywhere             anywhere             /* myproject/zanata-localization: */ tcp dpt:ndmps
+KUBE-MARK-MASQ  tcp  --  anywhere             anywhere             /* myproject/zanata-mariadb: */ tcp dpt:31829
+KUBE-SVC-TKJXVK5BQZAB2KFR  tcp  --  anywhere             anywhere             /* myproject/zanata-mariadb: */ tcp dpt:31829
+
+Chain KUBE-PORTALS-CONTAINER (1 references)
+target     prot opt source               destination         
+
+Chain KUBE-PORTALS-HOST (1 references)
+target     prot opt source               destination         
+
+Chain KUBE-POSTROUTING (1 references)
+target     prot opt source               destination         
+MASQUERADE  all  --  anywhere             anywhere             /* kubernetes service traffic requiring SNAT */ mark match 0x4000/0x4000
+
+Chain KUBE-SEP-37QI5NYO3WDRAYAJ (2 references)
+target     prot opt source               destination         
+KUBE-MARK-MASQ  all  --  dhcp-49-93.bos.redhat.com  anywhere             /* default/kubernetes:dns-tcp */
+DNAT       tcp  --  anywhere             anywhere             /* default/kubernetes:dns-tcp */ recent: SET name: KUBE-SEP-37QI5NYO3WDRAYAJ side: source mask: 255.255.255.255 tcp to:10.18.49.93:8053
+
+Chain KUBE-SEP-3DDMAB3JMKYJH2MH (1 references)
+target     prot opt source               destination         
+KUBE-MARK-MASQ  all  --  172.17.0.7           anywhere             /* myproject/zanata-localization: */
+DNAT       tcp  --  anywhere             anywhere             /* myproject/zanata-localization: */ tcp to:172.17.0.7:8080
+
+Chain KUBE-SEP-AVHPG52HMOAJO3BT (1 references)
+target     prot opt source               destination         
+KUBE-MARK-MASQ  all  --  172.17.0.6           anywhere             /* myproject/zanata-mariadb: */
+DNAT       tcp  --  anywhere             anywhere             /* myproject/zanata-mariadb: */ tcp to:172.17.0.6:3306
+
+Chain KUBE-SEP-GHHZ5HLKQOLYNMIP (1 references)
+target     prot opt source               destination         
+KUBE-MARK-MASQ  all  --  dhcp-49-93.bos.redhat.com  anywhere             /* default/router:443-tcp */
+DNAT       tcp  --  anywhere             anywhere             /* default/router:443-tcp */ tcp to:10.18.49.93:443
+
+Chain KUBE-SEP-KIFR4PZ5SVSQQ24K (2 references)
+target     prot opt source               destination         
+KUBE-MARK-MASQ  all  --  dhcp-49-93.bos.redhat.com  anywhere             /* default/kubernetes:https */
+DNAT       tcp  --  anywhere             anywhere             /* default/kubernetes:https */ recent: SET name: KUBE-SEP-KIFR4PZ5SVSQQ24K side: source mask: 255.255.255.255 tcp to:10.18.49.93:8443
+
+Chain KUBE-SEP-LWOYOYE5FBDPV3ZV (1 references)
+target     prot opt source               destination         
+KUBE-MARK-MASQ  all  --  dhcp-49-93.bos.redhat.com  anywhere             /* default/router:1936-tcp */
+DNAT       tcp  --  anywhere             anywhere             /* default/router:1936-tcp */ tcp to:10.18.49.93:1936
+
+Chain KUBE-SEP-POAYXJDFZUSTCXO4 (1 references)
+target     prot opt source               destination         
+KUBE-MARK-MASQ  all  --  dhcp-49-93.bos.redhat.com  anywhere             /* default/router:80-tcp */
+DNAT       tcp  --  anywhere             anywhere             /* default/router:80-tcp */ tcp to:10.18.49.93:80
+
+Chain KUBE-SEP-QWMJLIGOOPK5E4HY (2 references)
+target     prot opt source               destination         
+KUBE-MARK-MASQ  all  --  dhcp-49-93.bos.redhat.com  anywhere             /* default/kubernetes:dns */
+DNAT       udp  --  anywhere             anywhere             /* default/kubernetes:dns */ recent: SET name: KUBE-SEP-QWMJLIGOOPK5E4HY side: source mask: 255.255.255.255 udp to:10.18.49.93:8053
+
+Chain KUBE-SEP-Y4VJ4WLG5Y25LS3M (2 references)
+target     prot opt source               destination         
+KUBE-MARK-MASQ  all  --  172.17.0.8           anywhere             /* default/docker-registry:5000-tcp */
+DNAT       tcp  --  anywhere             anywhere             /* default/docker-registry:5000-tcp */ recent: SET name: KUBE-SEP-Y4VJ4WLG5Y25LS3M side: source mask: 255.255.255.255 tcp to:172.17.0.8:5000
+
+Chain KUBE-SERVICES (2 references)
+target     prot opt source               destination         
+KUBE-SVC-NPX46M4PTMTKRN6Y  tcp  --  anywhere             172.30.0.1           /* default/kubernetes:https cluster IP */ tcp dpt:https
+KUBE-SVC-ECTPRXTXBM34L34Q  tcp  --  anywhere             172.30.134.72        /* default/docker-registry:5000-tcp cluster IP */ tcp dpt:commplex-main
+KUBE-SVC-4JCRTMMYZAAYMIJ2  tcp  --  anywhere             172.30.68.34         /* default/router:1936-tcp cluster IP */ tcp dpt:jetcmeserver
+KUBE-SVC-A3Z62ONHYXNEOOXO  tcp  --  anywhere             172.30.103.219       /* myproject/zanata-localization: cluster IP */ tcp dpt:webcache
+KUBE-SVC-3VQ6B3MLH7E2SZT4  udp  --  anywhere             172.30.0.1           /* default/kubernetes:dns cluster IP */ udp dpt:domain
+KUBE-SVC-BA6I5HTZKAAAJT56  tcp  --  anywhere             172.30.0.1           /* default/kubernetes:dns-tcp cluster IP */ tcp dpt:domain
+KUBE-SVC-GQKZAHCS5DTMHUQ6  tcp  --  anywhere             172.30.68.34         /* default/router:80-tcp cluster IP */ tcp dpt:http
+KUBE-SVC-IKV43KYNCXS2W7KZ  tcp  --  anywhere             172.30.68.34         /* default/router:443-tcp cluster IP */ tcp dpt:https
+KUBE-SVC-TKJXVK5BQZAB2KFR  tcp  --  anywhere             172.30.254.99        /* myproject/zanata-mariadb: cluster IP */ tcp dpt:mysql
+KUBE-NODEPORTS  all  --  anywhere             anywhere             /* kubernetes service nodeports; NOTE: this must be the last rule in this chain */ ADDRTYPE match dst-type LOCAL
+
+Chain KUBE-SVC-3VQ6B3MLH7E2SZT4 (1 references)
+target     prot opt source               destination         
+KUBE-SEP-QWMJLIGOOPK5E4HY  all  --  anywhere             anywhere             /* default/kubernetes:dns */ recent: CHECK seconds: 180 reap name: KUBE-SEP-QWMJLIGOOPK5E4HY side: source mask: 255.255.255.255
+KUBE-SEP-QWMJLIGOOPK5E4HY  all  --  anywhere             anywhere             /* default/kubernetes:dns */
+
+Chain KUBE-SVC-4JCRTMMYZAAYMIJ2 (1 references)
+target     prot opt source               destination         
+KUBE-SEP-LWOYOYE5FBDPV3ZV  all  --  anywhere             anywhere             /* default/router:1936-tcp */
+
+Chain KUBE-SVC-A3Z62ONHYXNEOOXO (2 references)
+target     prot opt source               destination         
+KUBE-SEP-3DDMAB3JMKYJH2MH  all  --  anywhere             anywhere             /* myproject/zanata-localization: */
+
+Chain KUBE-SVC-BA6I5HTZKAAAJT56 (1 references)
+target     prot opt source               destination         
+KUBE-SEP-37QI5NYO3WDRAYAJ  all  --  anywhere             anywhere             /* default/kubernetes:dns-tcp */ recent: CHECK seconds: 180 reap name: KUBE-SEP-37QI5NYO3WDRAYAJ side: source mask: 255.255.255.255
+KUBE-SEP-37QI5NYO3WDRAYAJ  all  --  anywhere             anywhere             /* default/kubernetes:dns-tcp */
+
+Chain KUBE-SVC-ECTPRXTXBM34L34Q (1 references)
+target     prot opt source               destination         
+KUBE-SEP-Y4VJ4WLG5Y25LS3M  all  --  anywhere             anywhere             /* default/docker-registry:5000-tcp */ recent: CHECK seconds: 180 reap name: KUBE-SEP-Y4VJ4WLG5Y25LS3M side: source mask: 255.255.255.255
+KUBE-SEP-Y4VJ4WLG5Y25LS3M  all  --  anywhere             anywhere             /* default/docker-registry:5000-tcp */
+
+Chain KUBE-SVC-GQKZAHCS5DTMHUQ6 (1 references)
+target     prot opt source               destination         
+KUBE-SEP-POAYXJDFZUSTCXO4  all  --  anywhere             anywhere             /* default/router:80-tcp */
+
+Chain KUBE-SVC-IKV43KYNCXS2W7KZ (1 references)
+target     prot opt source               destination         
+KUBE-SEP-GHHZ5HLKQOLYNMIP  all  --  anywhere             anywhere             /* default/router:443-tcp */
+
+Chain KUBE-SVC-NPX46M4PTMTKRN6Y (1 references)
+target     prot opt source               destination         
+KUBE-SEP-KIFR4PZ5SVSQQ24K  all  --  anywhere             anywhere             /* default/kubernetes:https */ recent: CHECK seconds: 180 reap name: KUBE-SEP-KIFR4PZ5SVSQQ24K side: source mask: 255.255.255.255
+KUBE-SEP-KIFR4PZ5SVSQQ24K  all  --  anywhere             anywhere             /* default/kubernetes:https */
+
+Chain KUBE-SVC-TKJXVK5BQZAB2KFR (2 references)
+target     prot opt source               destination         
+KUBE-SEP-AVHPG52HMOAJO3BT  all  --  anywhere             anywhere             /* myproject/zanata-mariadb: */
+
+Chain OUTPUT_direct (1 references)
+target     prot opt source               destination         
+
+Chain POSTROUTING_ZONES (1 references)
+target     prot opt source               destination         
+POST_FedoraWorkstation  all  --  anywhere             anywhere            [goto] 
+POST_FedoraWorkstation  all  --  anywhere             anywhere            [goto] 
+
+Chain POSTROUTING_ZONES_SOURCE (1 references)
+target     prot opt source               destination         
+
+Chain POSTROUTING_direct (1 references)
+target     prot opt source               destination         
+
+Chain POST_FedoraWorkstation (2 references)
+target     prot opt source               destination         
+POST_FedoraWorkstation_log  all  --  anywhere             anywhere            
+POST_FedoraWorkstation_deny  all  --  anywhere             anywhere            
+POST_FedoraWorkstation_allow  all  --  anywhere             anywhere            
+
+Chain POST_FedoraWorkstation_allow (1 references)
+target     prot opt source               destination         
+
+Chain POST_FedoraWorkstation_deny (1 references)
+target     prot opt source               destination         
+
+Chain POST_FedoraWorkstation_log (1 references)
+target     prot opt source               destination         
+
+Chain PREROUTING_ZONES (1 references)
+target     prot opt source               destination         
+PRE_FedoraWorkstation  all  --  anywhere             anywhere            [goto] 
+PRE_FedoraWorkstation  all  --  anywhere             anywhere            [goto] 
+
+Chain PREROUTING_ZONES_SOURCE (1 references)
+target     prot opt source               destination         
+
+Chain PREROUTING_direct (1 references)
+target     prot opt source               destination         
+
+Chain PRE_FedoraWorkstation (2 references)
+target     prot opt source               destination         
+PRE_FedoraWorkstation_log  all  --  anywhere             anywhere            
+PRE_FedoraWorkstation_deny  all  --  anywhere             anywhere            
+PRE_FedoraWorkstation_allow  all  --  anywhere             anywhere            
+
+Chain PRE_FedoraWorkstation_allow (1 references)
+target     prot opt source               destination         
+
+Chain PRE_FedoraWorkstation_deny (1 references)
+target     prot opt source               destination         
+
+Chain PRE_FedoraWorkstation_log (1 references)
+target     prot opt source               destination         
+[root@dhcp-49-5 ~]# 
