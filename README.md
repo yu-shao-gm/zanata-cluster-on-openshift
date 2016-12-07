@@ -29,6 +29,16 @@ Download zanata template files for Openshift
 - # wget https://raw.githubusercontent.com/yu-shao-gm/zanata-cluster-on-openshift/master/zanata-db-pv.yaml
   Note: mysql/mysql-server doesn't start properly in Openshift Origin as it requires root access, Maria DB starts ok.
   
+Preparing the storage on your local host machine
+
+- # mkdir /var/zanata-storage
+- # chmod 777 /var/zanata-storage
+- # chcon -R -t svirt_sandbox_file_t /var/zanata-storage
+
+- # mkdir /var/zanata-db-storage
+- # chmod 777 /var/zanata-db-storage
+- # chcon -R -t svirt_sandbox_file_t /var/zanata-db-storage
+
 Creating Persistent Vlume on your local machine
 
 - # oc cluster up
@@ -37,15 +47,6 @@ Creating Persistent Vlume on your local machine
 - # oc create -f zanata-db-pv.yaml
 - # oc adm policy add-scc-to-user anyuid -z default
 
-
-Preparing the storage on your local host machine
-
-- # mkdir /var/zanata-storage
-- # chmod 777 /var/zanata-storage
-- # chcon -R -t svirt_sandbox_file_t /var/zanata-storage
-- # oc login -u system:admin
-- # oc create -f zanata-pv.yaml
-
 Downloading the template and other patch files
 - # wget https://raw.githubusercontent.com/yu-shao-gm/zanata-cluster-on-openshift/master/zanata-mariadb-localization.yaml
 - # wget https://raw.githubusercontent.com/yu-shao-gm/zanata-cluster-on-openshift/master/standalone.xml.patch
@@ -53,12 +54,6 @@ Downloading the template and other patch files
 
 Preparing the local Zanata data directory
 
-- # mkdir /var/zanata-storage
-- # chmod 777 /var/zanata-storage
-- # chcon -R -t svirt_sandbox_file_t /var/zanata-storage
-- # mkdir /var/zanata-db-storage
-- # chmod 777 /var/zanata-db-storage
-- # chcon -R -t svirt_sandbox_file_t /var/zanata-db-storage
 - # docker pull zanata/server
 - # docker run -it -v /var/zanata-storage:/opt/jboss/data-tmp zanata/server /bin/bash
 # Now, you are in your docker container, user is jboss
