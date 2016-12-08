@@ -70,6 +70,7 @@ Creating OpenShift Deployment
 
 - # oc login -u developer -p developer --server=server_IP_addr:8443
 - # oc process -f zanata-mariadb-localization.yaml | oc create -f -
+( You might sometimes find zanata-localizaiton pod starts quicker before mariadb is ready, there is no way to specify the sequence to start pods or I haven't found one yet, alterntaively, start zanata-mariadb.yaml first, then zanata-l10n.yaml)
 - # oc deploy dc/zanata-localization --latest
 
 Accessing Openshift Web UI
