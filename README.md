@@ -12,7 +12,7 @@ Install docker, as root user:
   INSECURE_REGISTRY='--insecure-registry 172.30.0.0/16'
 
 - # dnf docker start
-- # systemctl enable docker 
+- # systemctl enable docker
 - # systemctl disable httpd
 - # systemctl start docker
 - # systemctl stop httpd
@@ -20,15 +20,22 @@ Install docker, as root user:
 Install Openshift Origin:
 - From: https://github.com/openshift/origin/releases/tag/v1.3.1
   Note: The following steps are only based on version 1.3.1, Openshift Origin is still under very active development.
-  
+
 Start Openshift Origin:
 - # oc cluster up
+
+_Sometimes this command will stall when finding available ports for Openshift. In this case you might want to disable the iptables service beforehand:_
+
+```
+# systemctl stop iptables
+# iptables -F
+```
 
 Download zanata template files for Openshift
 - # wget https://raw.githubusercontent.com/yu-shao-gm/zanata-cluster-on-openshift/master/zanata-pv.yaml
 - # wget https://raw.githubusercontent.com/yu-shao-gm/zanata-cluster-on-openshift/master/zanata-db-pv.yaml
   Note: mysql/mysql-server doesn't start properly in Openshift Origin as it requires root access, Maria DB starts ok.
-  
+
 Preparing the storage on your local host machine
 
 - # mkdir /var/zanata-storage
@@ -66,7 +73,7 @@ Logging in as developer user
 - # oc login -u developer -p developer
 
 
-Creating OpenShift Deployment 
+Creating OpenShift Deployment
 
 - # oc login -u developer -p developer --server=server_IP_addr:8443
 - # oc process -f zanata-mariadb-localization.yaml | oc create -f -
@@ -78,12 +85,11 @@ Accessing Openshift Web UI
 - Zanata is deployed at:
   https://node-ipaddr:30000/zanata or
   https://localizatoin-pod-ipaddr:8080/zanata
-  
+
   (I am hitting this bug with Openshift Origin:
   https://bugzilla.redhat.com/show_bug.cgi?id=1280279
   To bypass this issue, disabling the firewall, service stop firewalld)
-  
+
 Creating the initial zanata admin user, otherwise you will not be able to login
 
 https://github.com/zanata/zanata-docker-files/blob/master/zanata-server/conf/admin-user-setup.sql
-
