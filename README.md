@@ -1,84 +1,112 @@
 # zanata-cluster-on-openshift
 
+This tutorial provides some instructions on how to set up and run a Zanata instance on an Openshift local cluster.
+
 By: Yu Shao <yshao@redhat.com>
 
 Based on Fedora 24
 
 Install docker, as root user:
-- # dnf yum install docker
 
-  File: /etc/sysconfig/docker
+```sh
+dnf yum install docker
+```
+
+  File: `/etc/sysconfig/docker`
   Uncomment the INSECURE_REGISTRY line and change it to:
-  INSECURE_REGISTRY='--insecure-registry 172.30.0.0/16'
+  `INSECURE_REGISTRY='--insecure-registry 172.30.0.0/16'`
 
-- # dnf docker start
-- # systemctl enable docker
-- # systemctl disable httpd
-- # systemctl start docker
-- # systemctl stop httpd
-
-Install Openshift Origin:
-- From: https://github.com/openshift/origin/releases/tag/v1.3.1
-  Note: The following steps are only based on version 1.3.1, Openshift Origin is still under very active development.
-
-Start Openshift Origin:
-- # oc cluster up
-
-_Sometimes this command will stall when finding available ports for Openshift. In this case you might want to disable the iptables service beforehand:_
-
-```
-# systemctl stop iptables
-# iptables -F
+```sh
+dnf docker start
+systemctl enable docker
+systemctl disable httpd
+systemctl start docker
+systemctl stop httpd
 ```
 
-Download zanata template files for Openshift
-- # wget https://raw.githubusercontent.com/yu-shao-gm/zanata-cluster-on-openshift/master/zanata-pv.yaml
-- # wget https://raw.githubusercontent.com/yu-shao-gm/zanata-cluster-on-openshift/master/zanata-db-pv.yaml
-  Note: mysql/mysql-server doesn't start properly in Openshift Origin as it requires root access, Maria DB starts ok.
+Install Openshift Origin Server and client tools:
+- From: https://github.com/openshift/origin/releases/tag/v1.3.2
+
+_Note: The following steps are only based on version 1.3.2, Openshift Origin is still under very active development._
+
+Start Openshift Origin using the client tools:
+
+```sh
+oc cluster up
+```
+
+_Sometimes this command will stall when finding available ports for Openshift. In this case you might want to disable the iptables service and restart the docker daemon beforehand:_
+
+```sh
+systemctl stop iptables
+iptables -F
+systemctl restart docker
+```
+
+The following template files will be used for persistent volume creation. One volume for the Zanata server data, another one for the database's data.
+`zanata-pv.yaml`
+`zanata-db-pv.yaml`
+
+_Note: mysql/mysql-server doesn't start properly in Openshift Origin as it requires root access, Maria DB starts ok._
 
 Preparing the storage on your local host machine
 
-- # mkdir /var/zanata-storage
-- # chmod 777 /var/zanata-storage
-- # chcon -R -t svirt_sandbox_file_t /var/zanata-storage
-- # mkdir /var/zanata-db-storage
-- # chmod 777 /var/zanata-db-storage
-- # chcon -R -t svirt_sandbox_file_t /var/zanata-db-storage
+```sh
+mkdir /var/zanata-storage
+chmod 777 /var/zanata-storage
+chcon -R -t svirt_sandbox_file_t /var/zanata-storage
+mkdir /var/zanata-db-storage
+chmod 777 /var/zanata-db-storage
+chcon -R -t svirt_sandbox_file_t /var/zanata-db-storage
+```
 
-Creating Persistent Vlume on your local machine
+Create the Persistent Volumes using the template files
 
-- # oc cluster up
-- # oc login -u system:admin
-- # oc create -f zanata-pv.yaml
-- # oc create -f zanata-db-pv.yaml
-- # oc adm policy add-scc-to-user anyuid -z default
+```sh
+oc login -u system:admin
+oc create -f zanata-pv.yaml
+oc create -f zanata-db-pv.yaml
+```
 
-Downloading the template and other patch files
-- # wget https://raw.githubusercontent.com/yu-shao-gm/zanata-cluster-on-openshift/master/zanata-mariadb-localization.yaml
-- # wget https://raw.githubusercontent.com/yu-shao-gm/zanata-cluster-on-openshift/master/standalone.xml.patch
-- # wget https://raw.githubusercontent.com/zanata/zanata-docker-files/master/zanata-server/conf/admin-user-setup.sql
+Give admin privileges to any user
 
-Preparing the local Zanata data directory
+```sh
+oc adm policy add-scc-to-user anyuid -z default
+```
 
-- # docker pull zanata/server
-- # docker run -it -v /var/zanata-storage:/opt/jboss/data-tmp zanata/server /bin/bash
-# Now, you are in your docker container, user is jboss
-- $ cp -R /opt/jboss/wildfly/* /opt/jboss/data-tmp/
-- $ exit
-- # cp admin-user-setup.sql /var/zanata-db-storage
+Log in as developer user
 
-Patching standalone.xml.patch in /var/zanata/storage/standalone/configuration directory
+```sh
+oc login -u developer -p developer
+```
 
-Logging in as developer user
-- # oc login -u developer -p developer
+Create OpenShift Deployments
 
+```sh
+oc process -f zanata-mariadb.yaml | oc create -f -
+```
 
-Creating OpenShift Deployment
+_... wait for the mariadb database to boot up ..._
 
-- # oc login -u developer -p developer --server=server_IP_addr:8443
-- # oc process -f zanata-mariadb-localization.yaml | oc create -f -
-( You might sometimes find zanata-localizaiton pod starts quicker before mariadb is ready, there is no way to specify the sequence to start pods or I haven't found one yet, alterntaively, start zanata-mariadb.yaml first, then zanata-l10n.yaml)
-- # oc deploy dc/zanata-localization --latest
+```sh
+oc process -f zanata-l10n.yaml | oc create -f -
+oc deploy dc/zanata-localization --latest
+```
+
+Create a Zanata admin user (otherwise you will not be able to login)
+
+Download and copy the contents of the following file:
+
+https://github.com/zanata/zanata-docker-files/blob/master/zanata-server/conf/admin-user-setup.sql
+
+Go to the running `zanata-mariadb` pod and click on the 'Terminal' tab to gain access to a terminal.
+
+Log in to mariadb using the credentials given in the zanata-l10n.yaml file:
+
+```sh
+mysql -u zanata --password=zanatapassword zanata
+```
+Then simply paste the copied sql commands to insert the admin user.
 
 Accessing Openshift Web UI
 - https://server_IP_address:8443/ as developer, developer
@@ -89,7 +117,3 @@ Accessing Openshift Web UI
   (I am hitting this bug with Openshift Origin:
   https://bugzilla.redhat.com/show_bug.cgi?id=1280279
   To bypass this issue, disabling the firewall, service stop firewalld)
-
-Creating the initial zanata admin user, otherwise you will not be able to login
-
-https://github.com/zanata/zanata-docker-files/blob/master/zanata-server/conf/admin-user-setup.sql
