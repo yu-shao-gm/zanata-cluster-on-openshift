@@ -1,2 +1,4 @@
 use zanata;
 alter database zanata character set = "utf8" collate = "utf8_unicode_ci";
+
+SET GLOBAL character_set_server=utf8, collation_server=utf8_general_ci; 
