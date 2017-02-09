@@ -44,28 +44,25 @@ systemctl restart docker
 ```
 
 The following template files will be used for persistent volume creation. One volume for the Zanata server data, another one for the database's data.
-`zanata-pv.yaml`
-`zanata-db-pv.yaml`
+`volumes/zanata-pv.yaml`
+`volumes/zanata-db-pv.yaml`
+`volumes/jenkins-pv.yaml`
 
 _Note: mysql/mysql-server doesn't start properly in Openshift Origin as it requires root access, Maria DB starts ok._
 
 Preparing the storage on your local host machine
 
 ```sh
-mkdir /var/zanata-storage
-chmod 777 /var/zanata-storage
-chcon -R -t svirt_sandbox_file_t /var/zanata-storage
-mkdir /var/zanata-db-storage
-chmod 777 /var/zanata-db-storage
-chcon -R -t svirt_sandbox_file_t /var/zanata-db-storage
+mkdir -p /var/storage/jenkins /var/storage/zanata /var/storage/zanata-db
+chmod -R 777 /var/storage
+chcon -R -t svirt_sandbox_file_t /var/storage
 ```
 
 Create the Persistent Volumes using the template files
 
 ```sh
 oc login -u system:admin
-oc create -f zanata-pv.yaml
-oc create -f zanata-db-pv.yaml
+oc create -f volumes/
 ```
 
 Give admin privileges to any user
@@ -90,7 +87,6 @@ _... wait for the mariadb database to boot up ..._
 
 ```sh
 oc process -f zanata-l10n.yaml | oc create -f -
-oc deploy dc/zanata-localization --latest
 ```
 
 Create a Zanata admin user (otherwise you will not be able to login)
@@ -117,3 +113,34 @@ Accessing Openshift Web UI
   (I am hitting this bug with Openshift Origin:
   https://bugzilla.redhat.com/show_bug.cgi?id=1280279
   To bypass this issue, disabling the firewall, service stop firewalld)
+
+  Create a new Zanata Project and Version (same as in zanata.xml)
+
+Run a jenkins container
+
+- Go to "Add to Project" on the "Overview" page in the Openshift web console
+- Click on "Continuous Integration and Deployment" under "Browse Catalog"
+- Select the Image Stream for "Jenkins (Persistent)
+- Select to NOT have oauth enabled (This will create an admin/password user on Jenkins)
+- Select to have '250M' of Jenkins storage (so that it matches up with the jenkins volume created earlier)
+- Go back to the "Overview" and wait for Jenkins to be deployed
+
+Install the Zanata Jenkins plugin
+
+- Log in to Jenkins
+- Build the plugin with `mvn package`
+
+OR
+
+- Just upload a pre-built .hbi file (From Manage Jenkins -> Manage Plugins)
+
+Create a new Jenkins job
+
+- Select a Freestyle Project
+- Add a source repository
+  - If using Github, make sure to add the correct credentials
+- Add a Build step of type "Zanata Sync"
+- Fill in the necessary data:
+  - Zanata Server URL is the url from your newly created openshift instance of zanata
+  - Zanata username and API key should be obatined by logging into Zanata and looking at the "Client" section of your "Settings"
+  - Sync Option should be 'source'

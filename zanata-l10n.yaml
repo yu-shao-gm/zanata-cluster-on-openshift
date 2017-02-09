@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Template
 metadata:
-  name: zanata-localization
+  name: zanata-server
   annotations:
-    openshift.io/display-name: "Zanata Localization Service"
+    openshift.io/display-name: "Zanata Web Application Server"
     description: "A software localization service"
     tags: "zanata,mariadb"
 objects:
@@ -20,7 +20,7 @@ objects:
     - from:
         kind: DockerImage
         name: zanata/server
-      name: 3.9.6-2
+      name: 4.0.0-1
 - apiVersion: v1
   kind: PersistentVolumeClaim
   metadata:
@@ -84,13 +84,13 @@ objects:
           deploymentconfig: zanata-localization
       spec:
         containers:
-        - image: zanata/server:3.9.6-2
+        - image: zanata/server:4.0.0-1
           imagePullPolicy: Always
           registry: zanata
           name: server
           env:
           - name: DB_PORT_3306_TCP_ADDR
-            value: zanata-mariadb
+            value: "zanata-mariadb"
           - name: DB_ENV_MYSQL_DATABASE
             value: "zanata"
           - name: DB_ENV_MYSQL_USER
@@ -102,7 +102,7 @@ objects:
           - name: ZANATA_MYSQL_USER
             value: "zanata"
           - name: ZANATA_HOME
-            value: "/opt/jboss/wildfly"
+            value: "/var/lib/zanata"
           volumeMounts:
           - mountPath: "/var/lib/zanata"
             name: zanata-volume
